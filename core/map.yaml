@@ -47,9 +47,9 @@ spec:
           - name: service_simpleroom
             value : ws://simpleroom:9090/rooms
           - name: GITHUB_APP_ID
-            value : '41a0b9b9f3456f783625'
+            value : 'yourGitHubClientId'
           - name: GITHUB_APP_SECRET
-            value : 'eb1d54dec7adbfe0f1d05cabedfe79076941ce50'
+            value : 'yourGitHubClientSecret'
           - name: MAP_SERVICE_URL
             value : http://127.0.0.1:6379map/map/v1/sites
           - name: PLAYER_SERVICE_URL
