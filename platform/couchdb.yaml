@@ -1,0 +1,36 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: couchdb
+  labels:
+    app: gameon
+spec:
+  ports:
+    - port: 5984
+      protocol: TCP
+      targetPort: 5984
+  selector:
+    app: gameon
+    tier: couchdb
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: couchdb
+  labels:
+    app: gameon
+spec:
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: gameon
+        tier: couchdb
+    spec:
+      containers:
+      - image: klaemo/couchdb:1.6.1
+        name: couchdb
+        ports:
+        - containerPort: 5984
+          name: couchdb

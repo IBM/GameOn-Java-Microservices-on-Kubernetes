@@ -1,0 +1,43 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: kafka
+  labels:
+    app: gameon
+spec:
+  ports:
+    - port: 9092
+      protocol: TCP
+      targetPort: 9092
+  selector:
+    app: gameon
+    tier: kafka
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: kafka
+  labels:
+    app: gameon
+spec:
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: gameon
+        tier: kafka
+    spec:
+      containers:
+      - image: rshriram/kafka-0.9
+        name: kafka
+        env:
+        - name: ADVERTISED_HOST
+          value: kafka
+        - name: ADVERTISED_PORT
+          value: '9092'
+        - name: AUTO_CREATE_TOPICS
+          value: "true"
+        ports:
+        - containerPort: 9092
+          name: kafka

@@ -1,0 +1,114 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: map
+  labels:
+    app: gameon
+spec:
+  type: NodePort
+  ports:
+    - port: 9080
+      protocol: TCP
+      targetPort: 9080
+      name: map-1
+      nodePort: 30999
+    - port: 9443
+      protocol: TCP
+      targetPort: 9443
+      name: map-2
+      nodePort: 30947
+  selector:
+    app: gameon
+    tier: map
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: map
+  labels:
+    app: gameon
+spec:
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: gameon
+        tier: map
+    spec:
+      containers:
+      - image: gameontext/gameon-map
+        name: map
+        env:
+          - name: service_map
+            value : https://map:9443/map/v1/sites
+          - name: service_room
+            value : ws://room:9080/rooms
+          - name: service_simpleroom
+            value : ws://simpleroom:9090/rooms
+          - name: GITHUB_APP_ID
+            value : '41a0b9b9f3456f783625'
+          - name: GITHUB_APP_SECRET
+            value : 'eb1d54dec7adbfe0f1d05cabedfe79076941ce50'
+          - name: MAP_SERVICE_URL
+            value : http://127.0.0.1:6379map/map/v1/sites
+          - name: PLAYER_SERVICE_URL
+            value : http://127.0.0.1:6379/players/players/v1/accounts
+          - name: COUCHDB_SERVICE_URL
+            value : http://couchdb:5984
+          - name: KAFKA_SERVICE_URL
+            value : kafka:9092
+          - name: FRONT_END_PLAYER_URL
+            value : https://169.47.241.137:30443/players/v1/accounts
+          - name: FRONT_END_SUCCESS_CALLBACK
+            value : https://169.47.241.137:30443/#/login/callback
+          - name: FRONT_END_FAIL_CALLBACK
+            value : https://169.47.241.137:30443/#/game
+          - name: FRONT_END_AUTH_URL
+            value : https://169.47.241.137:30443/auth
+          - name: GAMEON_MODE
+            value : development
+          - name: TARGET_PLATFORM
+            value : local
+          - name: SYSTEM_ID
+            value : game-on.org
+          - name: LICENSE
+            value : accept
+          - name: PROXY_DOCKER_HOST
+            value : '169.47.241.137'
+          - name: ADMIN_PASSWORD
+            value : admin
+          - name: WLP_SKIP_MAXPERMSIZE
+            value : 'true'
+          - name: WLP_OUTPUT_DIR
+            value : /opt/ibm/wlp/usr/servers/
+          - name: LOG_DIR
+            value : /opt/ibm/wlp/usr/servers/defaultServer/logs
+          - name: MAP_KEY
+            value : fish
+          - name: COUCHDB_USER
+            value : mapUser
+          - name: COUCHDB_PASSWORD
+            value : myCouchDBSecret
+          - name: A8_REGISTRY_URL
+            value : http://registry:8080
+          - name: A8_CONTROLLER_URL
+            value : http://controller:8080
+          - name: A8_CONTROLLER_POLL
+            value : 5s
+          - name: A8_CONTROLLER_POLL
+            value : 5s
+          - name: A8_LOGSTASH_SERVER
+            value : 'logstash:8092'
+        ports:
+        - containerPort: 9080
+          name: map-1
+        - containerPort: 9443
+          name: map-2
+        volumeMounts:
+        - name: keystore
+          mountPath: /opt/ibm/wlp/usr/servers/defaultServer/resources/security
+      volumes:
+      - name: keystore
+        persistentVolumeClaim:
+          claimName: keystore-claim

@@ -1,0 +1,22 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: setup
+  labels:
+    app: gameon
+    tier: setup
+spec:
+  restartPolicy: Never
+  containers:
+  - name: setup
+    image: anthonyamanse/keystore
+    env:
+      - name: IP
+        value: 169.47.241.137:30443
+    volumeMounts:
+    - name: keystore
+      mountPath: /tmp/keystore/
+  volumes:
+  - name: keystore
+    persistentVolumeClaim:
+      claimName: keystore-claim
