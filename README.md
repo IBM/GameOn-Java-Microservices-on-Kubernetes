@@ -158,8 +158,10 @@ You can edit that in the GitHub later if you made a new cluster.
 Now, take note of the **Client ID** and **Client Secret** of the app.
 You will need to add this in the environment variables on the yaml files of your **Core services**
 ```yaml
-		  - name: GITHUB_APP_ID
-            value : '<yourGitHubClientId>'
-          - name: GITHUB_APP_SECRET
-            value : '<yourGitHubClientSecret>'
+...
+- name: GITHUB_APP_ID
+  value : '<yourGitHubClientId>'
+- name: GITHUB_APP_SECRET
+  value : '<yourGitHubClientSecret>'
+...
 ```
