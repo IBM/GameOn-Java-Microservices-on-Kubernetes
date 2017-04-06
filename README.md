@@ -143,3 +143,23 @@ Now that you have successfully deployed your own app in the Bluemix Kubernetes C
 * **Congratulations! You now have your own GameOn app running on Bluemix! You may now wish to explore on creating new rooms and adding social logins.**
 
 # A. Adding Social Logins
+You may want to add social logins so you and your friends can explore the rooms together.
+To add social logins you would need to have developer accounts on the social app you want to use.
+## Github
+You can register your application in this link: [New OAuth Application](https://github.com/settings/applications/new)
+![Github](images/github.png)
+For the Homepage URL, you will need to put the IP address of your cluster and the port 30443.
+> https://169.xxx.xxx.xxx:30443/#/
+
+For the Authorization callback URL, you will need to put the IP address and the port 30949 for now.
+> https://169.xxx.xxx.xxx:30949/auth/GitHubCallback
+
+You can edit that in the GitHub later if you made a new cluster.
+Now, take note of the **Client ID** and **Client Secret** of the app.
+You will need to add this in the environment variables on the yaml files of your **Core services**
+```yaml
+		  - name: GITHUB_APP_ID
+            value : '<yourGitHubClientId>'
+          - name: GITHUB_APP_SECRET
+            value : '<yourGitHubClientSecret>'
+```
