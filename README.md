@@ -130,4 +130,16 @@ You should look for the map, auth, and room servers. Confirm if they are UP.
 
 ```
 # 5. Explore your GameOn App
+
+Now that you have successfully deployed your own app in the Bluemix Kubernetes Container Service, you can access it via its IP address and assigned Port.
+> https://169.xxx.xxx.xxx:30XXX/
+
+* You will see the homepage of your app on that address.
+![Homepage](images/home.png)
+* Click on Enter to log in as Anonymous User(You will need to setup your own Social Login API keys)
+![User](images/user.png)
+* The app will prompt you to enter your desired **Username** and **Favorite Color**
+![Game](images/game.png)
+* **Congratulations! You now have your own GameOn app running on Bluemix! You may now wish to explore on creating new rooms and adding social logins.**
+
 # A. Adding Social Logins
