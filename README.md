@@ -13,6 +13,7 @@ If you have not setup the Kubernetes cluster, please follow the [Creating a Kube
 3. [Create the Platform Services](#3-create-the-platform-services)
 4. [Create the Core Services](#4-create-the-core-services)
 5. [Explore your GameOn App](#5-explore-your-gameon-app)
+
 A. [Adding Social Logins](#a-adding-social-logins)
 
 
