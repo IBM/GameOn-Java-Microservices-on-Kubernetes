@@ -165,3 +165,4 @@ You will need to add this in the environment variables on the yaml files of your
   value : '<yourGitHubClientSecret>'
 ...
 ```
+> The application uses the keys(name) **GITHUB_APP_ID** and **GITHUB_APP_SECRET** and must exactly match this in yaml files.
