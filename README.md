@@ -127,8 +127,9 @@ You should look for the map, auth, and room servers. Confirm if they are UP.
 [WARNING] 094/205214 (11) : Server room/room1 is UP, reason: Layer7 check passed ...
 [WARNING] 094/205445 (11) : Server auth/auth1 is UP, reason: Layer7 check passed ...
 [WARNING] 094/205531 (11) : Server map/map1 is UP, reason: Layer7 check passed ...
-
 ```
+> It can take around 5-10 minutes for these services to setup completely.
+
 # 5. Explore your GameOn App
 
 Now that you have successfully deployed your own app in the Bluemix Kubernetes Container Service, you can access it via its IP address and assigned Port.
