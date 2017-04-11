@@ -63,7 +63,7 @@ spec:
     image: anthonyamanse/keystore
     env:
       - name: IP
-        value: 169.47.241.137:30443
+        value: 169.47.241.137
     ...
 ```
 # 2. Create Volumes in your Cluster
@@ -146,12 +146,12 @@ Now that you have successfully deployed your own app in the Bluemix Kubernetes C
 You may want to add social logins so you and your friends can explore the rooms together.
 To add social logins you would need to have developer accounts on the social app you want to use.
 ## Github
-You can register your application in this link: [New OAuth Application](https://github.com/settings/applications/new)
+<details><summary>Github Social Login</summary>You can register your application in this link: [New OAuth Application](https://github.com/settings/applications/new)
 ![Github](images/github.png)
 For the Homepage URL, you will need to put the IP address of your cluster and the port 30443.
 > https://169.xxx.xxx.xxx:30443/#/
 
-For the Authorization callback URL, you will need to put the IP address and the port 30949 for now.
+For the Authorization callback URL, you will need to put the IP address and the port 30443 and point to the auth service of the app.
 > https://169.xxx.xxx.xxx:30949/auth/GitHubCallback
 
 You can edit that in the GitHub later if you made a new cluster.
@@ -166,3 +166,29 @@ You will need to add this in the environment variables on the yaml files of your
 ...
 ```
 > The application uses the keys(name) **GITHUB_APP_ID** and **GITHUB_APP_SECRET** and must exactly match this in yaml files.
+</details>
+## Twitter
+<details><summary>Twitter Social Login</summary>
+You can register your application with your Twitter account in this link: [Create new app](https://apps.twitter.com/app/new)
+![Twitter](images/twitter.png)
+
+For the name field, you can put the name you want for your app.
+For the Homepage URL, you will need to put the IP address of your cluster and the port 30443.
+> https://169.xxx.xxx.xxx:30443/#/
+
+For the Authorization callback URL, you will need to put the IP address and the port 30443 and point to the auth service of the app.
+> https://169.xxx.xxx.xxx:30949/auth/TwitterAuth
+
+Go to the Keys and Access Tokens section of the twitter application you just registered and take note of the **Consumer Key** and **Consumer Secret** of the app.
+You will need to add this in the environment variables on the yaml files of your **Core services**
+```yaml
+...
+- name: TWITTER_CONSUMER_KEY
+  value : '<yourGitHubClientId>'
+- name: TWITTER_CONSUMER_SECRET
+  value : '<yourGitHubClientSecret>'
+...
+```
+> The application uses the keys(name) **TWITTER_CONSUMER_KEY** and **TWITTER_CONSUMER_SECRET** and must exactly match these in the core yaml files.
+
+</details>
