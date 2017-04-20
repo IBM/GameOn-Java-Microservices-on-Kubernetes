@@ -4,6 +4,8 @@ This project demonstrates deployment of a Microservices based application Game O
 
 There are several microservices used in this app ranging from **couchdb, redis, to frontend tier services**. Everything would be hosted in Bluemix Kubernetes Container Service where you can access your own GameOn app from anywhere.
 
+![kube-gameon](images/kube-gameon.png)
+
 ## Prerequisite
 
 Create a Kubernetes cluster with IBM Bluemix Container Service.
