@@ -47,13 +47,13 @@ spec:
           - name: service_simpleroom
             value : ws://simpleroom:9090/rooms
           - name: GITHUB_APP_ID
-            value : '12'
+            value : ''
           - name: GITHUB_APP_SECRET
-            value : '1234'
+            value : ''
           - name: TWITTER_CONSUMER_KEY
-            value : '12'
+            value : ''
           - name: TWITTER_CONSUMER_SECRET
-            value : '1234'
+            value : ''
           - name: MAP_SERVICE_URL
             value : http://127.0.0.1:6379map/map/v1/sites
           - name: PLAYER_SERVICE_URL

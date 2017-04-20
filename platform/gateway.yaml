@@ -6,9 +6,9 @@ metadata:
     app: gameon
 spec:
   ports:
-    - port: 9092
+    - port: 6379
       protocol: TCP
-      targetPort: 9092
+      targetPort: 6379
   selector:
     app: gameon
     tier: gateway
@@ -49,5 +49,5 @@ spec:
         - name: A8_REGSITRY_POLL
           value: 5s
         ports:
-        - containerPort: 9092
+        - containerPort: 6379
           name: gateway
