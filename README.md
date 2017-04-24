@@ -138,11 +138,11 @@ You should look for the map, auth, and room servers. Confirm if they are UP.
 # 5. Explore your GameOn App
 
 Now that you have successfully deployed your own app in the Bluemix Kubernetes Container Service, you can access it via its IP address and assigned Port.
-> https://169.xxx.xxx.xxx:30XXX/
+> https://169.xxx.xxx.xxx:30443/
 
 * You will see the homepage of your app on that address.
 ![Homepage](images/home.png)
-* Click on Enter to log in as Anonymous User(You will need to setup your own Social Login API keys)
+* Click on Enter to log in as Anonymous User(You will need to setup your own Social Login API keys if you want to use your accounts on Github,Twitter,etc..)
 ![User](images/user.png)
 * The app will prompt you to enter your desired **Username** and **Favorite Color**
 ![Game](images/game.png)
@@ -158,7 +158,7 @@ For the Homepage URL, you will need to put the IP address of your cluster and th
 > https://169.xxx.xxx.xxx:30443/#/
 
 For the Authorization callback URL, you will need to put the IP address and the port 30443 and point to the auth service of the app.
-> https://169.xxx.xxx.xxx:30949/auth/GitHubCallback
+> https://169.xxx.xxx.xxx:30443/auth/GitHubCallback
 
 You can edit that in the GitHub later if you made a new cluster.
 Now, take note of the **Client ID** and **Client Secret** of the app.
@@ -183,7 +183,7 @@ For the Homepage URL, you will need to put the IP address of your cluster and th
 > https://169.xxx.xxx.xxx:30443/#/
 
 For the Authorization callback URL, you will need to put the IP address and the port 30443 and point to the auth service of the app.
-> https://169.xxx.xxx.xxx:30949/auth/TwitterAuth
+> https://169.xxx.xxx.xxx:30443/auth/TwitterAuth
 
 Go to the Keys and Access Tokens section of the twitter application you just registered and take note of the **Consumer Key** and **Consumer Secret** of the app.
 You will need to add this in the environment variables on the yaml files of your **Core services**
