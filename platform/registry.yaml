@@ -5,10 +5,12 @@ metadata:
   labels:
     app: gameon
 spec:
+  type: NodePort
   ports:
     - port: 8080
       protocol: TCP
       targetPort: 8080
+      nodePort: 31300
   selector:
     app: gameon
     tier: registry
