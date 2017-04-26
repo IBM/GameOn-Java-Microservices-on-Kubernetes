@@ -26,7 +26,7 @@ function cluster_setup() {
 bx cs workers cluster-travis
 $(bx cs cluster-config cluster-travis | grep export)
 # git clone https://github.com/IBM/kubernetes-container-service-gameon-java-microservices.git
-cd kubernetes-container-service-gameon-java-microservices
+# cd kubernetes-container-service-gameon-java-microservices
 kubectl delete pvc -l app=gameon
 kubectl delete --ignore-not-found=true -f core
 kubectl delete --ignore-not-found=true -f platform
@@ -151,7 +151,7 @@ while true
 do
 CORE=$(kubectl logs $(kubectl get pods | grep proxy | awk '{print $1}') | grep UP | awk '{print $8}' | xargs | sed -e s/,//g)
 
-    if [ $CORE = "UP UP UP UP UP" ]
+    if [ "$CORE" = "UP UP UP UP UP" ]
     then
         echo "You can now access your Gameon App at https://$IP:30443"
         echo "If you'd like to add social logins, please follow the instructions in the Repository's README"
