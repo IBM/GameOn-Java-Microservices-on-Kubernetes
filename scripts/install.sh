@@ -155,6 +155,7 @@ CORE=$(kubectl logs $(kubectl get pods | grep proxy | awk '{print $1}') | grep U
     then
         echo "You can now access your Gameon App at https://$IP:30443"
         echo "If you'd like to add social logins, please follow the instructions in the Repository's README"
+        break
     fi
 
     if [ $TRIES -eq 60 ]
@@ -165,7 +166,6 @@ CORE=$(kubectl logs $(kubectl get pods | grep proxy | awk '{print $1}') | grep U
         exit 1
     fi
     sleep 10s
-    CORE=$(kubectl logs $(kubectl get pods | grep proxy | awk '{print $1}') | grep UP | awk '{print $8}' | xargs | sed -e s/,//g)
 done
 }
 
