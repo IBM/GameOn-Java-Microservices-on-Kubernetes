@@ -26,8 +26,8 @@ sudo mv ./kubectl /usr/local/bin/kubectl
 function cluster_setup() {
 bx cs workers cluster-travis
 $(bx cs cluster-config cassandra-demo | grep export)
-git clone https://github.com/IBM/kubernetes-container-service-gameon-java-microservices.git
-cd kubernetes-container-service-gameon-java-microservices
+# git clone https://github.com/IBM/kubernetes-container-service-gameon-java-microservices.git
+# cd kubernetes-container-service-gameon-java-microservices
 kubectl delete pvc -l app=gameon
 kubectl delete --ignore-not-found=true -f core
 kubectl delete --ignore-not-found=true -f platform
@@ -166,11 +166,13 @@ CORE=$(kubectl logs $(kubectl get pods | grep proxy | awk '{print $1}') | grep U
         exit 1
     fi
     sleep 10s
+done
 }
 
 
 install_bluemix_cli
 bluemix_auth
+cluster_setup
 initial_setup
 create_platform_services
 create_core_services
