@@ -27,7 +27,8 @@ function cluster_setup() {
 bx cs workers cluster-travis
 $(bx cs cluster-config cluster-travis | grep export)
 # git clone https://github.com/IBM/kubernetes-container-service-gameon-java-microservices.git
-# cd kubernetes-container-service-gameon-java-microservices
+ls
+cd kubernetes-container-service-gameon-java-microservices
 kubectl delete pvc -l app=gameon
 kubectl delete --ignore-not-found=true -f core
 kubectl delete --ignore-not-found=true -f platform
