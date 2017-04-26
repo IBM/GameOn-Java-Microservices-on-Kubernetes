@@ -165,6 +165,7 @@ CORE=$(kubectl logs $(kubectl get pods | grep proxy | awk '{print $1}') | grep U
         exit 1
     fi
     sleep 10s
+    CORE=$(kubectl logs $(kubectl get pods | grep proxy | awk '{print $1}') | grep UP | awk '{print $8}' | xargs | sed -e s/,//g)
 done
 }
 
