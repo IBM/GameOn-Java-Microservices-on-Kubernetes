@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/IBM/kubernetes-container-service-gameon-java-microservices.svg?branch=master)](https://travis-ci.org/IBM/kubernetes-container-service-gameon-java-microservices)
+
 # kubernetes-container-service-gameon-java-microservice
 
 This project demonstrates deployment of a Microservices based application Game On! on to Kubernetes cluster service from Bluemix. Game On! is a throwback text-based adventure built to help you explore microservice architectures and related concepts. GameOn! users start by creating a simple room, the building block of any adventure game.  With the tutorials available at the [GameOn! website](https://gameontext.org), a user can create in text a simple room in any one of various languages in just a few minutes.
