@@ -25,7 +25,7 @@ sudo mv ./kubectl /usr/local/bin/kubectl
 
 function cluster_setup() {
 bx cs workers cluster-travis
-$(bx cs cluster-config cassandra-demo | grep export)
+$(bx cs cluster-config cluster-travis | grep export)
 # git clone https://github.com/IBM/kubernetes-container-service-gameon-java-microservices.git
 # cd kubernetes-container-service-gameon-java-microservices
 kubectl delete pvc -l app=gameon
