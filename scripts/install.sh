@@ -9,8 +9,7 @@ sudo curl -o /usr/share/bash-completion/completions/cf https://raw.githubusercon
 cf --version
 curl -L public.dhe.ibm.com/cloud/bluemix/cli/bluemix-cli/Bluemix_CLI_0.5.1_amd64.tar.gz > Bluemix_CLI.tar.gz
 tar -xvf Bluemix_CLI.tar.gz
-cd Bluemix_CLI
-sudo ./install_bluemix_cli
+sudo ./Bluemix_CLI/install_bluemix_cli
 }
 
 function bluemix_auth() {
@@ -27,7 +26,6 @@ function cluster_setup() {
 bx cs workers cluster-travis
 $(bx cs cluster-config cluster-travis | grep export)
 # git clone https://github.com/IBM/kubernetes-container-service-gameon-java-microservices.git
-ls
 cd kubernetes-container-service-gameon-java-microservices
 kubectl delete pvc -l app=gameon
 kubectl delete --ignore-not-found=true -f core
