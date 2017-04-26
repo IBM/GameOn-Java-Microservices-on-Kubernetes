@@ -75,13 +75,24 @@ kubectl create -f platform
 
 echo "Waiting for pods to setup"
 sleep 10s
-PODS=$(kubectl get pods | grep ContainerCreating | grep Pending)
+PODS=$(kubectl get pods | grep Pending)
 while [ ${#PODS} -ne 0 ]
 do
-    echo "Pods are not yet Running..."
-    PODS=$(kubectl get pods | grep ContainerCreating | grep Pending)
+    echo "Some Pods are Pending..."
+    PODS=$(kubectl get pods | grep Pending)
     sleep 5s
 done
+
+PODS=$(kubectl get pods | grep ContainerCreating)
+while [ ${#PODS} -ne 0 ]
+do
+    echo "Some Pods are not yet Running..."
+    PODS=$(kubectl get pods | grep ContainerCreating)
+    sleep 5s
+done
+
+echo "Pods for the platform services are now Running."
+echo "Waiting for the amalgam8 controlplane to finish setup..."
 
 TRIES=0
 while true
@@ -143,6 +154,8 @@ do
     sleep 5s
 done
 
+echo "Pods for the core services are now Running."
+echo "Waiting for core services to finish setting up..."
 # kubectl logs $(kubectl get pods | grep proxy | awk '{print $1}') | tail -10
 
 TRIES=0
@@ -165,6 +178,7 @@ CORE=$(kubectl logs $(kubectl get pods | grep proxy | awk '{print $1}') | grep U
         kubectl logs $(kubectl get pods | grep proxy | awk '{print $1}') | grep UP | awk '{print $6}'
         exit 1
     fi
+    echo "Waiting for core services to finish setting up..."
     sleep 10s
 done
 }
