@@ -249,7 +249,7 @@ You can learn more about the details of registering a room [**here**](https://ga
 
 ## References
 
-* [GameOn](https://gameontext.org) - The original game on app [deployed using Dockers](https://book.gameontext.org/walkthroughs/local-docker.html)
+* [GameOn](https://gameontext.org) - The original game on app. The journey is based on [deploying GameOn using Dockers](https://book.gameontext.org/walkthroughs/local-docker.html)
 
 ## License
 
