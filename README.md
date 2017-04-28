@@ -2,7 +2,7 @@
 
 # kubernetes-container-service-gameon-java-microservice
 
-This project demonstrates deployment of a Microservices based application Game On! on to Kubernetes cluster service from Bluemix. Game On! is a throwback text-based adventure built to help you explore microservice architectures and related concepts. GameOn! users start by creating a simple room, the building block of any adventure game.  With the tutorials available at the [GameOn! website](https://gameontext.org), a user can create in text a simple room in any one of various languages in just a few minutes.
+This project demonstrates deployment of a Microservices based application Game On! on to Kubernetes cluster service from Bluemix. Game On! is a throwback text-based adventure built to help you explore microservice architectures and related concepts. GameOn! users start by creating a simple room, the building block of any adventure game.  With the tutorials available at the [GameOn! website](https://book.gameontext.org), a user can create in text a simple room in any one of various languages in just a few minutes.
 
 There are several microservices used in this app ranging from **couchdb, redis, to frontend tier services**. Everything would be hosted in Bluemix Kubernetes Container Service where you can access your own GameOn app from anywhere.
 
@@ -31,7 +31,7 @@ Please follow the [Toolchain instructions](https://github.com/IBM/container-jour
 5. [Explore your GameOn App](#5-explore-your-gameon-app)
 
 A. [Adding Social Logins](#a-adding-social-logins)
-
+B. [Adding Rooms](#b-adding-rooms)
 
 # 1. Modify the yaml files
 First, you'll need to update the yaml files for the **core services** and **setup.yaml**.
@@ -113,21 +113,31 @@ Import command completed:  104 entries successfully imported, 0 entries failed o
 ```
 
 # 3. Create the Platform Services
-You can now create the Platform services and deployments of the app. You can use the script provided to create the services and deployments in one command or, alternatively, you can use **kubectl create -f** with every yaml file in the platform directory.
+You can now create the Platform services and deployments of the app.
 ```bash
-$ ./platform-services.sh
+$ kubectl create -f platform
 OR alternatively
 $ kubectl create -f platform/controller.yaml
 $ kubectl create -f platform/<file-name>.yaml
 ...
 $ kubectl create -f platform/registry.yaml
 ```
+
+To check if the control plane (controller and registry) is up:
+```bash
+$ curl -w "%{http_code}" "<Public IP of your cluster>:31200/health" -o /dev/null
+$ curl -w "%{http_code}" "<Public IP of your kubernetes>:31300/uptime" -o /dev/null
+```
+If both of them outputs 200, you can proceed to the next step.
 > Note: It can take around 1-2 minutes for the Pods to setup completely.
 
 # 4. Create the Core Services
-Finally, you can create the Core services and deployments of the app. Like creating the platform services, you can use the script provided or use **kubectl create -f** with every yaml file in the core directory.
+Finally, you can create the Core services and deployments of the app.
+*(If you want to have social logins, please follow the steps [here](#a-adding-social-logins) before deploying the core services)*
+
+
 ```bash
-$ ./core-services.sh
+$ kubectl create -f core
 OR alternatively
 $ kubectl create -f core/auth.yaml
 $ kubectl create -f core/<file-name>.yaml
@@ -138,11 +148,13 @@ To verify if the core services has finished setting up, you would need to check 
 ```bash
 kubectl logs proxy-***-**
 ```
-You should look for the map, auth, and room servers. Confirm if they are UP.
+You should look for the map, auth, mediator, player and room servers. Confirm if they are UP.
 ```bash
 [WARNING] 094/205214 (11) : Server room/room1 is UP, reason: Layer7 check passed ...
 [WARNING] 094/205445 (11) : Server auth/auth1 is UP, reason: Layer7 check passed ...
 [WARNING] 094/205531 (11) : Server map/map1 is UP, reason: Layer7 check passed ...
+[WARNING] 094/205531 (11) : Server mediator/mediator1 is UP, reason: Layer7 check passed ...
+[WARNING] 094/205531 (11) : Server player/player1 is UP, reason: Layer7 check passed ...
 ```
 > It can take around 5-10 minutes for these services to setup completely.
 
@@ -161,7 +173,11 @@ Now that you have successfully deployed your own app in the Bluemix Kubernetes C
 
 # A. Adding Social Logins
 You may want to add social logins so you and your friends can explore the rooms together.
-To add social logins you would need to have developer accounts on the social app you want to use.
+To add social logins you would need to have developer accounts on the social app you want to use. 
+
+> You will need to redeploy your **Core** services with the your own modified yaml files. The next step will show you where to add your API Keys.
+
+
 ## Github
 You can register your application in this link: [New OAuth Application](https://github.com/settings/applications/new)
 ![Github](images/github.png)
@@ -207,3 +223,34 @@ You will need to add this in the environment variables on the yaml files of your
 ...
 ```
 > The application uses the keys(name) **TWITTER_CONSUMER_KEY** and **TWITTER_CONSUMER_SECRET** and must exactly match these in the core yaml files.
+
+# B. Adding Rooms
+
+You can build your own rooms by following [**this guide**](https://gameontext.gitbooks.io/gameon-gitbook/content/walkthroughs/createRoom.html) by the GameOn team. They have some sample rooms written in Java, Swift, Go, and more.
+
+In this journey, you will deploy the sample rooms written in **Java** and **Swift**. You will deploy it in the same cluster as your GameOn App.
+
+You can create these rooms by executing
+```bash
+$ kubectl create -f sample-rooms
+```
+
+To register the deployed rooms in the cluster, you will need to use the UI of your app.
+* Click on the Registered Rooms button at the top right.
+![addroom](images/addroom1.png)
+
+* Enter the necessary information of the room. (*Leave the Github Repo and Health Endpoint fields blank.*) Then click `Register`
+> Note: In the samples, the Java Room uses port 9080, while the Swift room uses port 8080.
+
+	![addroom](images/addroom2.png)
+    ![addroom](images/addroom3.png)
+* You now have successfully registered your rooms in your Map. You can go to them directly by typing these commands in the UI: `/listmyrooms` and use the id in `/teleport <id-of-the-room>`
+You can learn more about the details of registering a room [**here**](https://gameontext.gitbooks.io/gameon-gitbook/content/walkthroughs/registerRoom.html).
+
+## References
+
+* [GameOn](https://gameontext.org) - The original game on app [deployed using Dockers](https://book.gameontext.org/walkthroughs/local-docker.html)
+
+## License
+
+[Apache 2.0](http://www.apache.org/licenses/LICENSE-2.0)
