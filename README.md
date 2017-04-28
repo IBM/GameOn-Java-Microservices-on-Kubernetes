@@ -242,8 +242,8 @@ To register the deployed rooms in the cluster, you will need to use the UI of yo
 * Enter the necessary information of the room. (*Leave the Github Repo and Health Endpoint fields blank.*) Then click `Register`
 > Note: In the samples, the Java Room uses port 9080, while the Swift room uses port 8080.
 
-	![addroom](images/addroom2.png)
-    ![addroom](images/addroom3.png)
+![addroom](images/addroom2.png)
+![addroom](images/addroom3.png)
 * You now have successfully registered your rooms in your Map. You can go to them directly by typing these commands in the UI: `/listmyrooms` and use the id in `/teleport <id-of-the-room>`
 You can learn more about the details of registering a room [**here**](https://gameontext.gitbooks.io/gameon-gitbook/content/walkthroughs/registerRoom.html).
 
