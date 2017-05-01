@@ -4,7 +4,7 @@
 
 This project demonstrates deployment of a Microservices based application Game On! on to Kubernetes cluster service from Bluemix. Game On! is a throwback text-based adventure built to help you explore microservice architectures and related concepts. GameOn! users start by creating a simple room, the building block of any adventure game.  With the tutorials available at the [GameOn! website](https://book.gameontext.org), a user can create in text a simple room in any one of various languages in just a few minutes.
 
-There are several microservices used in this app ranging from **couchdb, redis, to frontend tier services**. Everything would be hosted in Bluemix Kubernetes Container Service where you can access your own GameOn app from anywhere.
+There are several microservices used in this app ranging from **couchdb, redis, to frontend tier services**. Everything would be hosted on a Kubernetes Cluster where you can access your own GameOn app from anywhere.
 
 ![kube-gameon](images/kube-gameon.png)
 
