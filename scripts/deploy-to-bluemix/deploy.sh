@@ -149,6 +149,7 @@ CORE=$(kubectl logs $(kubectl get pods | grep proxy | awk '{print $1}') | grep U
 
     if [ "$CORE" = "UP UP UP UP UP" ]
     then
+        kubectl logs $(kubectl get pods | grep proxy | awk '{print $1}') | grep UP
         echo "You can now access your Gameon App at https://$IP_ADDR:30443"
         echo "If you'd like to add social logins, please follow the instructions in the Repository's README"
         break
