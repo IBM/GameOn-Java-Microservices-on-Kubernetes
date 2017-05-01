@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/IBM/kubernetes-container-service-gameon-java-microservices.svg?branch=master)](https://travis-ci.org/IBM/kubernetes-container-service-gameon-java-microservices)
+[![Build Status](https://travis-ci.org/IBM/GameOn-Java-Microservices-on-Kubernetes.svg?branch=master)](https://travis-ci.org/IBM/GameOn-Java-Microservices-on-Kubernetes)
 
 # GameOn! Java microservices deployment on Kubernetes Cluster
 
@@ -17,7 +17,7 @@ If you want to deploy GameOn! directly to Bluemix, click on 'Deploy to Bluemix' 
 
 > You will need to create your Kubernetes cluster first and make sure it is fully deployed in your Bluemix account.
 
-[![Create Toolchain](https://github.com/IBM/container-journey-template/blob/master/images/button.png)](https://console.ng.bluemix.net/devops/setup/deploy/?repository=https://github.com/IBM/kubernetes-container-service-gameon-java-microservices)
+[![Create Toolchain](https://github.com/IBM/container-journey-template/blob/master/images/button.png)](https://console.ng.bluemix.net/devops/setup/deploy/?repository=https://github.com/IBM/GameOn-Java-Microservices-on-Kubernetes)
 
 Please follow the [Toolchain instructions](https://github.com/IBM/container-journey-template/blob/master/Toolchain_Instructions.md) to complete your toolchain and pipeline.
 
@@ -171,7 +171,7 @@ Now that you have successfully deployed your own app in the Bluemix Kubernetes C
 
 # A. Adding Social Logins
 You may want to add social logins so you and your friends can explore the rooms together.
-To add social logins you would need to have developer accounts on the social app you want to use. 
+To add social logins you would need to have developer accounts on the social app you want to use.
 
 > You will need to redeploy your **Core** services with the your own modified yaml files. The next step will show you where to add your API Keys.
 
