@@ -1,6 +1,6 @@
 [![Build Status](https://travis-ci.org/IBM/kubernetes-container-service-gameon-java-microservices.svg?branch=master)](https://travis-ci.org/IBM/kubernetes-container-service-gameon-java-microservices)
 
-# kubernetes-container-service-gameon-java-microservice
+# GameOn! - Java microservices on Kubernetes Cluster
 
 This project demonstrates deployment of a Microservices based application Game On! on to Kubernetes cluster service from Bluemix. Game On! is a throwback text-based adventure built to help you explore microservice architectures and related concepts. GameOn! users start by creating a simple room, the building block of any adventure game.  With the tutorials available at the [GameOn! website](https://book.gameontext.org), a user can create in text a simple room in any one of various languages in just a few minutes.
 
@@ -10,12 +10,10 @@ There are several microservices used in this app ranging from **couchdb, redis, 
 
 ## Prerequisite
 
-Create a Kubernetes cluster with IBM Bluemix Container Service.
+Create a Kubernetes cluster with either [Minikube](https://kubernetes.io/docs/getting-started-guides/minikube) for local testing, or with [IBM Bluemix Container Service](https://github.com/IBM/container-journey-template) to deploy in cloud. The code here is regularly tested against [Kubernetes Cluster from Bluemix Container Service](https://console.ng.bluemix.net/docs/containers/cs_ov.html#cs_ov) using Travis.
 
-If you have not setup the Kubernetes cluster, please follow the [Creating a Kubernetes cluster](https://github.com/IBM/container-journey-template) tutorial.
-
-## Deploy to Bluemix
-If you want to deploy Cassandra nodes directly to Bluemix, click on 'Deploy to Bluemix' button below to create a Bluemix DevOps service toolchain and pipeline for deploying the sample, else jump to [Steps](#steps)
+## Deploy to Kubernetes Cluster on Bluemix
+If you want to deploy GameOn! directly to Bluemix, click on 'Deploy to Bluemix' button below to create a Bluemix DevOps service toolchain and pipeline for deploying the sample, else jump to [Steps](#steps)
 
 > You will need to create your Kubernetes cluster first and make sure it is fully deployed in your Bluemix account.
 
