@@ -22,8 +22,6 @@ Room: Java based room implementation
 
 Everything would be hosted on a Kubernetes Cluster where you can access your own GameOn app from anywhere.
 
-![kube-gameon](images/kube-gameon.png)
-
 ## Prerequisite
 
 Create a Kubernetes cluster with either [Minikube](https://kubernetes.io/docs/getting-started-guides/minikube) for local testing, or with [IBM Bluemix Container Service](https://github.com/IBM/container-journey-template) to deploy in cloud. The code here is regularly tested against [Kubernetes Cluster from Bluemix Container Service](https://console.ng.bluemix.net/docs/containers/cs_ov.html#cs_ov) using Travis.
