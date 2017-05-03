@@ -6,7 +6,7 @@ This project demonstrates deployment of a Microservices based application Game O
 
 There are several microservices used in this app
 
-#Core MicroServices:
+### Core MicroServices:
 
 - Proxy: HAProxy based, and is responsible for surfacing the collection of APIs as a single facade for the entire application.
 - WebApp: Webapp is a simple nginx process that serves the static files that comprise the front-end of the UI.
@@ -16,7 +16,7 @@ There are several microservices used in this app
 - Map: The Map service is a Java EE application running on WebSphere Liberty that provides a public REST API using JAX-RS. It stores data in a NoSQL data store, either couchdb or Cloudant
 Room: Java based room implementation
 
-#Platform Services:
+### Platform Services:
 - Amalgam8: Amalgam8 supplies Registry, and a Controller, via which it implements the Service Discovery, and Service Proxying
 - Kafka: Publish/Subscribe solution used by Amalgam8
 
