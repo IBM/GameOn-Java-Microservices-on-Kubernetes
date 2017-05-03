@@ -58,7 +58,7 @@ Take note of the IP address. Go to the **core** folder and change the following 
 > value : https://169.47.241.yyy:30443/players/v1/accounts **TO ->** value : https://169.xx.xxx.xxx:30443/players/v1/accounts
 > ...
 
-You can also use the script provided that replaces the default values.
+You can also use the script provided that replaces the default values to the IP of your current cluster.
 * `./replace_ip_linux.sh` for linux
 * `./replace_ip_OSX.sh` for macOS
 
