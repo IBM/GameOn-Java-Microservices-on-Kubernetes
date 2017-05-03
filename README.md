@@ -6,19 +6,19 @@ This project demonstrates deployment of a Microservices based application Game O
 
 There are several microservices used in this app
 
-Core MicroServices:
+#Core MicroServices:
 
-Proxy: HAProxy based, and is responsible for surfacing the collection of APIs as a single facade for the entire application.
-WebApp: Webapp is a simple nginx process that serves the static files that comprise the front-end of the UI.
-Player: Players, are represented by the player Java microservice service, which provides a public API for CRUD operations, and for managing API tokens.
-Auth: Java microservice to allow players to connect and identify themselves via a selected "social login"
-Mediator: The Mediator service is implemented in Java using WebSphere Liberty, and connects players to rooms over Websockets
-Map: The Map service is a Java EE application running on WebSphere Liberty that provides a public REST API using JAX-RS. It stores data in a NoSQL data store, either couchdb or Cloudant
-Room: 
+- Proxy: HAProxy based, and is responsible for surfacing the collection of APIs as a single facade for the entire application.
+- WebApp: Webapp is a simple nginx process that serves the static files that comprise the front-end of the UI.
+- Player: Players, are represented by the player Java microservice service, which provides a public API for CRUD operations, and for managing API tokens.
+- Auth: Java microservice to allow players to connect and identify themselves via a selected "social login"
+- Mediator: The Mediator service is implemented in Java using WebSphere Liberty, and connects players to rooms over Websockets
+- Map: The Map service is a Java EE application running on WebSphere Liberty that provides a public REST API using JAX-RS. It stores data in a NoSQL data store, either couchdb or Cloudant
+Room: Java based room implementation
 
-Platform Services:
-Amalgam8: Amalgam8 supplies Registry, and a Controller, via which it implements the Service Discovery, and Service Proxying
-Kafka: Publish/Subscribe solution used by Amalgam8
+#Platform Services:
+- Amalgam8: Amalgam8 supplies Registry, and a Controller, via which it implements the Service Discovery, and Service Proxying
+- Kafka: Publish/Subscribe solution used by Amalgam8
 
 Everything would be hosted on a Kubernetes Cluster where you can access your own GameOn app from anywhere.
 
@@ -184,7 +184,7 @@ Now that you have successfully deployed your own app in the Bluemix Kubernetes C
 ![Game](images/game.png)
 * **Congratulations! You now have your own GameOn app running on Bluemix! You may now wish to explore on creating new rooms and adding social logins.**
 
-# 5.2 Add Social Logins
+# 5.1 Add Social Logins
 You may want to add social logins so you and your friends can explore the rooms together.
 To add social logins you would need to have developer accounts on the social app you want to use.
 
@@ -237,7 +237,7 @@ You will need to add this in the environment variables on the yaml files of your
 ```
 > The application uses the keys(name) **TWITTER_CONSUMER_KEY** and **TWITTER_CONSUMER_SECRET** and must exactly match these in the core yaml files.
 
-# 5.1 Add Rooms
+# 5.2 Add Rooms
 
 You can build your own rooms by following [**this guide**](https://gameontext.gitbooks.io/gameon-gitbook/content/walkthroughs/createRoom.html) by the GameOn team. They have some sample rooms written in Java, Swift, Go, and more.
 
