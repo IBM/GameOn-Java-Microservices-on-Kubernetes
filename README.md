@@ -1,10 +1,26 @@
 [![Build Status](https://travis-ci.org/IBM/GameOn-Java-Microservices-on-Kubernetes.svg?branch=master)](https://travis-ci.org/IBM/GameOn-Java-Microservices-on-Kubernetes)
 
-# GameOn! Java microservices deployment on Kubernetes Cluster
+# GameOn! Java Microservices deployment on Kubernetes Cluster
 
-This project demonstrates deployment of a Microservices based application Game On! on to Kubernetes cluster service from Bluemix. Game On! is a throwback text-based adventure built to help you explore microservice architectures and related concepts. GameOn! users start by creating a simple room, the building block of any adventure game.  With the tutorials available at the [GameOn! website](https://book.gameontext.org), a user can create in text a simple room in any one of various languages in just a few minutes.
+This project demonstrates deployment of a Microservices based application Game On! on to Kubernetes cluster. Game On! is a throwback text-based adventure built to help you explore microservice architectures and related concepts. GameOn! users start by creating a simple room, the building block of any adventure game. A user can create in text a simple room in any one of various languages in just a few minutes.
 
-There are several microservices used in this app ranging from **couchdb, redis, to frontend tier services**. Everything would be hosted on a Kubernetes Cluster where you can access your own GameOn app from anywhere.
+There are several microservices used in this app
+
+Core MicroServices:
+
+Proxy: HAProxy based, and is responsible for surfacing the collection of APIs as a single facade for the entire application.
+WebApp: Webapp is a simple nginx process that serves the static files that comprise the front-end of the UI.
+Player: Players, are represented by the player Java microservice service, which provides a public API for CRUD operations, and for managing API tokens.
+Auth: Java microservice to allow players to connect and identify themselves via a selected "social login"
+Mediator: The Mediator service is implemented in Java using WebSphere Liberty, and connects players to rooms over Websockets
+Map: The Map service is a Java EE application running on WebSphere Liberty that provides a public REST API using JAX-RS. It stores data in a NoSQL data store, either couchdb or Cloudant
+Room: 
+
+Platform Services:
+Amalgam8: Amalgam8 supplies Registry, and a Controller, via which it implements the Service Discovery, and Service Proxying
+Kafka: Publish/Subscribe solution used by Amalgam8
+
+Everything would be hosted on a Kubernetes Cluster where you can access your own GameOn app from anywhere.
 
 ![kube-gameon](images/kube-gameon.png)
 
@@ -22,16 +38,15 @@ If you want to deploy GameOn! directly to Bluemix, click on 'Deploy to Bluemix' 
 Please follow the [Toolchain instructions](https://github.com/IBM/container-journey-template/blob/master/Toolchain_Instructions.md) to complete your toolchain and pipeline.
 
 ## Steps
-1. [Modify the yaml files](#1-modify-the-yaml-files)
-2. [Create Volumes in your Cluster](#2-create-volumes-in-your-cluster)
+1. [Modify the Core services yaml files](#1-modify-the-core-services-yaml-files)
+2. [Create volumes in your Cluster](#2-create-volumes-in-your-cluster)
 3. [Create the Platform Services](#3-create-the-platform-services)
 4. [Create the Core Services](#4-create-the-core-services)
 5. [Explore your GameOn App](#5-explore-your-gameon-app)
+  - 5.1 [Add Social Logins](#51-add-social-logins)
+  - 5.2 [Add Rooms](#52-add-rooms)
 
-A. [Adding Social Logins](#a-adding-social-logins)
-B. [Adding Rooms](#b-adding-rooms)
-
-# 1. Modify the yaml files
+# 1. Modify the Core services yaml files
 First, you'll need to update the yaml files for the **core services** and **setup.yaml**.
 You will need to get the Public IP address of your cluster.
 ```bash
@@ -169,7 +184,7 @@ Now that you have successfully deployed your own app in the Bluemix Kubernetes C
 ![Game](images/game.png)
 * **Congratulations! You now have your own GameOn app running on Bluemix! You may now wish to explore on creating new rooms and adding social logins.**
 
-# A. Adding Social Logins
+# 5.2 Add Social Logins
 You may want to add social logins so you and your friends can explore the rooms together.
 To add social logins you would need to have developer accounts on the social app you want to use.
 
@@ -222,7 +237,7 @@ You will need to add this in the environment variables on the yaml files of your
 ```
 > The application uses the keys(name) **TWITTER_CONSUMER_KEY** and **TWITTER_CONSUMER_SECRET** and must exactly match these in the core yaml files.
 
-# B. Adding Rooms
+# 5.1 Add Rooms
 
 You can build your own rooms by following [**this guide**](https://gameontext.gitbooks.io/gameon-gitbook/content/walkthroughs/createRoom.html) by the GameOn team. They have some sample rooms written in Java, Swift, Go, and more.
 
