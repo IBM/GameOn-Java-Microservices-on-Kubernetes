@@ -2,7 +2,7 @@
 
 # GameOn! Java Microservices deployment on Kubernetes Cluster
 
-This project demonstrates deployment of a Microservices based application Game On! on to Kubernetes cluster. Game On! is a throwback text-based adventure built to help you explore microservice architectures and related concepts. GameOn! users start by creating a simple room, the building block of any adventure game. A user can create in text a simple room in any one of various languages in just a few minutes.
+This project demonstrates deployment of a Microservices based application [Game On!](https://gameontext.org/#/) on to Kubernetes cluster. Game On! is a throwback text-based adventure built to help you explore microservice architectures and related concepts. GameOn! users start by creating a simple room, the building block of any adventure game. A user can create in text a simple room in any one of various languages in just a few minutes.
 
 There are several microservices used in this app
 
@@ -10,14 +10,20 @@ There are several microservices used in this app
 
 - [Proxy](https://github.com/gameontext/gameon-proxy): HAProxy based, and is responsible for surfacing the collection of APIs as a single facade for the entire application.
 - [WebApp](https://github.com/gameontext/gameon-webapp): Webapp is a simple nginx process that serves the static files that comprise the front-end of the UI.
+
+#####Java MicroServices
+
+The five main Java microservices are: 
+
 - [Player](https://github.com/gameontext/gameon-player): Players, are represented by the player Java microservice service, which provides a public API for CRUD operations, and for managing API tokens.
 - [Auth](https://github.com/gameontext/gameon-auth): Java microservice to allow players to connect and identify themselves via a selected "social login"
-- [Mediator](https://github.com/gameontext/gameon-mediator)**: The Mediator service is implemented in Java using WebSphere Liberty, and connects players to rooms over Websockets
+- [Mediator](https://github.com/gameontext/gameon-mediator): The Mediator service is implemented in Java using WebSphere Liberty, and connects players to rooms over Websockets
 - [Map](https://github.com/gameontext/gameon-map): The Map service is a Java EE application running on WebSphere Liberty that provides a public REST API using JAX-RS. It stores data in a NoSQL data store, either couchdb or Cloudant
 - [Room](https://github.com/gameontext/gameon-room): Java based room implementation
 
 ### Platform Services:
-- [Amalgam8](https://www.amalgam8.io/): Amalgam8 supplies Registry, and a Controller, via which it implements the Service Discovery, and Service Proxying
+
+- [Amalgam8](https://www.amalgam8.io/): Content-based Routing Fabric for Polyglot Microservices. Amalgam8 supplies Registry, and a Controller, via which it implements the Service Discovery, and Service Proxying
 - [Kafka](https://kafka.apache.org): Publish/Subscribe solution used by Amalgam8
 
 Everything would be hosted on a Kubernetes Cluster where you can access your own GameOn app from anywhere.
