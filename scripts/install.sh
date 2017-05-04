@@ -25,8 +25,6 @@ sudo mv ./kubectl /usr/local/bin/kubectl
 function cluster_setup() {
 bx cs workers cluster-travis
 $(bx cs cluster-config cluster-travis | grep export)
-# git clone https://github.com/IBM/kubernetes-container-service-gameon-java-microservices.git
-# cd kubernetes-container-service-gameon-java-microservices
 kubectl delete pvc -l app=gameon
 kubectl delete --ignore-not-found=true -f core
 kubectl delete --ignore-not-found=true -f platform
@@ -44,6 +42,7 @@ kubectl delete --ignore-not-found=true -f local-volume.yaml
 function initial_setup() {
 kubectl create -f local-volume.yaml
 sleep 5s
+sed -i s#169.47.241.213#$IP#g setup.yaml
 kubectl create -f setup.yaml
 echo "Waiting for container to setup"
 sleep 15s
@@ -167,8 +166,8 @@ CORE=$(kubectl logs $(kubectl get pods | grep proxy | awk '{print $1}') | grep U
     if [ "$CORE" = "UP UP UP UP UP" ]
     then
         kubectl logs $(kubectl get pods | grep proxy | awk '{print $1}') | grep UP
-        echo "You can now access your Gameon App at https://$IP:30443"
-        echo "If you'd like to add social logins, please follow the instructions in the Repository's README"
+        echo "Everything seems to be working fine!"
+        echo "Travis build has finished. Cleaning up..."
         break
     fi
 
@@ -185,9 +184,12 @@ done
 }
 
 
+
+
 install_bluemix_cli
 bluemix_auth
 cluster_setup
 initial_setup
 create_platform_services
 create_core_services
+cluster_setup
