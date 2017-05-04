@@ -11,7 +11,7 @@ There are several microservices used in this app
 - [Proxy](https://github.com/gameontext/gameon-proxy): HAProxy based, and is responsible for surfacing the collection of APIs as a single facade for the entire application.
 - [WebApp](https://github.com/gameontext/gameon-webapp): Webapp is a simple nginx process that serves the static files that comprise the front-end of the UI.
 
-#####Java MicroServices
+##### Java MicroServices
 
 The five main Java microservices are: 
 
