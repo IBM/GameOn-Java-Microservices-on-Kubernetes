@@ -8,13 +8,18 @@ There are several microservices used in this app
 
 ### Core MicroServices:
 
-- Proxy: HAProxy based, and is responsible for surfacing the collection of APIs as a single facade for the entire application.
-- WebApp: Webapp is a simple nginx process that serves the static files that comprise the front-end of the UI.
-- Player: Players, are represented by the player Java microservice service, which provides a public API for CRUD operations, and for managing API tokens.
-- Auth: Java microservice to allow players to connect and identify themselves via a selected "social login"
-- Mediator: The Mediator service is implemented in Java using WebSphere Liberty, and connects players to rooms over Websockets
-- Map: The Map service is a Java EE application running on WebSphere Liberty that provides a public REST API using JAX-RS. It stores data in a NoSQL data store, either couchdb or Cloudant
-Room: Java based room implementation
+There are five core Java microservices, using [JAX-RS](https://en.wikipedia.org/wiki/Java_API_for_RESTful_Web_Services), [CDI](https://dzone.com/articles/cdi-di-p1) etc. from [MicroProfile](http://microprofile.io) framework spec.
+
+- [Player](https://github.com/gameontext/gameon-player): Players, are represented by the player Java microservice service, which provides a public API for CRUD operations, and for managing API tokens.
+- [Auth](https://github.com/gameontext/gameon-auth): Java microservice to allow players to connect and identify themselves via a selected "social login"
+- [Mediator](https://github.com/gameontext/gameon-mediator): The Mediator service is implemented in Java using WebSphere Liberty, and connects players to rooms over Websockets
+- [Map](https://github.com/gameontext/gameon-map): The Map service is a Java EE application running on WebSphere Liberty that provides a public REST API using JAX-RS. It stores data in a NoSQL data store, either couchdb or Cloudant
+- [Room](https://github.com/gameontext/gameon-room): Java based room implementation
+
+In addition, Proxy and WebApp complete the core microservices
+
+- [Proxy](https://github.com/gameontext/gameon-proxy): HAProxy based, and is responsible for surfacing the collection of APIs as a single facade for the entire application.
+- [WebApp](https://github.com/gameontext/gameon-webapp): Webapp is a simple nginx process that serves the static files that comprise the front-end of the UI.
 
 ### Platform Services:
 
