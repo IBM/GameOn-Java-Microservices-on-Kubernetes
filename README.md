@@ -185,6 +185,7 @@ You should look for the map, auth, mediator, player and room servers. Confirm if
 
 Now that you have successfully deployed your own app in the Bluemix Kubernetes Container Service, you can access it via its IP address and assigned Port.
 > https://169.xxx.xxx.xxx:30443/
+> You will need to use https on port 30443.
 
 * You will see the homepage of your app on that address.
 ![Homepage](images/home.png)
@@ -193,6 +194,11 @@ Now that you have successfully deployed your own app in the Bluemix Kubernetes C
 * The app will prompt you to enter your desired **Username** and **Favorite Color**
 ![Game](images/game.png)
 * **Congratulations! You now have your own GameOn app running on Bluemix! You may now wish to explore on creating new rooms and adding social logins.**
+* Commands in GameOn app:
+  * `/help` - lists all commands available
+  * `/sos` - go back the the first room
+  * `/exits` - lists all available exits
+  * `/go <N,S,E,W>` - go to the room in that direction
 
 # 5.1 Add Social Logins
 You may want to add social logins so you and your friends can explore the rooms together.
@@ -251,11 +257,11 @@ You will need to add this in the environment variables on the yaml files of your
 
 You can build your own rooms by following [**this guide**](https://gameontext.gitbooks.io/gameon-gitbook/content/walkthroughs/createRoom.html) by the GameOn team. They have some sample rooms written in Java, Swift, Go, and more.
 
-In this journey, you will deploy the sample rooms written in **Java** and **Swift**. You will deploy it in the same cluster as your GameOn App.
+In this journey, you will deploy the **[sample room written in Java](https://github.com/gameontext/sample-room-java)**. You will deploy it in the same cluster as your GameOn App.
 
 You can create these rooms by executing
 ```bash
-$ kubectl create -f sample-rooms
+$ kubectl create -f sample-room
 ```
 
 To register the deployed rooms in the cluster, you will need to use the UI of your app.
@@ -266,9 +272,10 @@ To register the deployed rooms in the cluster, you will need to use the UI of yo
 > Note: In the samples, the Java Room uses port 9080, while the Swift room uses port 8080.
 
 ![addroom](images/addroom2.png)
-![addroom](images/addroom3.png)
-* You now have successfully registered your rooms in your Map. You can go to them directly by typing these commands in the UI: `/listmyrooms` and use the id in `/teleport <id-of-the-room>`
-You can learn more about the details of registering a room [**here**](https://gameontext.gitbooks.io/gameon-gitbook/content/walkthroughs/registerRoom.html).
+* You now have successfully registered your room in your Map. You can go to it directly by typing these commands in the UI: `/listmyrooms` and use the id in `/teleport <id-of-the-room>`. [Explore the game](#5-explore-your-gameon-app).
+
+* You can learn more about the details of registering a room [**here**](https://gameontext.gitbooks.io/gameon-gitbook/content/walkthroughs/registerRoom.html).
+* You can build your own room by following [GameOn's guide](https://gameontext.gitbooks.io/gameon-gitbook/content/walkthroughs/createRoom.html)
 
 ## References
 
