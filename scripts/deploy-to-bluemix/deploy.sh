@@ -20,6 +20,7 @@ kubectl delete pvc -l app=gameon
 kubectl delete --ignore-not-found=true -f core
 kubectl delete --ignore-not-found=true -f platform
 kubectl delete --ignore-not-found=true -f setup.yaml
+kubectl delete --ignore-not-found=true -f sample-room
 kuber=$(kubectl get pods -l app=gameon)
 while [ ${#kuber} -ne 0 ]
 do

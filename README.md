@@ -277,6 +277,20 @@ To register the deployed rooms in the cluster, you will need to use the UI of yo
 * You can learn more about the details of registering a room [**here**](https://gameontext.gitbooks.io/gameon-gitbook/content/walkthroughs/registerRoom.html).
 * You can build your own room by following [GameOn's guide](https://gameontext.gitbooks.io/gameon-gitbook/content/walkthroughs/createRoom.html)
 
+## Troubleshooting
+* If you can't access the app on the browser, make sure you are using `https://` on port 30443.
+* If something is wrong with a specific service, view its logs using `kubectl logs <pod-name-of-the-service>` or `kubectl logs <pod-name-of-the-service> -f` to follow the logs.
+* To clean/delete your data on Persistent Volume, delete your persistent volume claim.
+  * `kubectl delete pvc -l app=gameon`
+  * After deleting the claim, you can delete the Persistent Volume using `kubectl delete pv local-volume-1`. This would ensure the keystores are deleted on the volume.
+* To delete your platform services:
+  * `kubectl delete -f platform`
+* To delete your core services:
+  * `kubectl delete -f core`
+* To delete everything:
+  * `kubectl delete svc,deploy,pvc -l app=gameon`
+  * `kubectl delete pv local-volume-1`
+
 ## References
 
 * [GameOn](https://gameontext.org) - The original game on app. The journey is based on [deploying GameOn using Dockers](https://book.gameontext.org/walkthroughs/local-docker.html)
