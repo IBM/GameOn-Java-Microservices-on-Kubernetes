@@ -26,7 +26,7 @@ In addition, Proxy and WebApp complete the core microservices
 
 ### Platform Services:
 
-- [Amalgam8](https://www.amalgam8.io/): Content-based Routing Fabric for Polyglot Microservices. Amalgam8 supplies Registry, and a Controller, via which it implements the Service Discovery, and Service Proxying. In addition, there ia an Amalgam8 sidecar associated with each microservice, which automatically registers the microservice with the registry. 
+- [Amalgam8](https://www.amalgam8.io/): Content-based Routing Fabric for Polyglot Microservices. Amalgam8 supplies Registry, and a Controller, via which it implements the Service Discovery, and Service Proxying. In addition, there is an Amalgam8 sidecar associated with each microservice, which automatically registers the microservice with the registry. 
 - [Kafka](https://kafka.apache.org): Publish/Subscribe solution used by Amalgam8
 
 Everything would be hosted on a Kubernetes Cluster where you can access your own GameOn app from anywhere.
