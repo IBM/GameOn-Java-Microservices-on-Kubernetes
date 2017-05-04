@@ -56,8 +56,10 @@ You can also use the script provided that replaces the default values to the IP 
 * `./scripts/replace_ip_OSX.sh` for macOS
 
 <details>
-  <summary>Or alternatively:</summary>
+
+<summary>Or alternatively:</summary>
 Get the Public IP address of your cluster.
+
 ```bash
 $ kubectl get nodes
 NAME             STATUS    AGE
@@ -105,6 +107,7 @@ spec:
 ```
 
 </details>
+
 # 2. Create Volumes in your Cluster
 You would need to create a volume for your cluster. You can use the provided yaml file. The required keystores will be stored in this volume. The volume will also be used by the core services.
 ```bash
