@@ -55,6 +55,13 @@ You can also use the script provided that replaces the default values to the IP 
 * `./scripts/replace_ip_linux.sh` for linux
 * `./scripts/replace_ip_OSX.sh` for macOS
 
+The script replaces every instance of `169.47.241.213` in the files of your [core services](#core-microservices) yaml files  and `setup.yaml` to the IP of your cluster *(found by executing `kubectl get nodes`)*.
+
+Usage for the script can also be
+* `./scripts/replace_ip_<OS>.sh <IP-to-be-replaced>` replaces every instance of <IP-to-be-replaced> in the same yaml files to the IP of your current cluster.
+
+This can be used if you have already changed `169.47.241.213` to a new IP and you want to work in another cluster that has a different IP.
+
 <details>
 
 <summary>Or alternatively:</summary>
@@ -80,16 +87,16 @@ Core yaml files should look like this. Change the following env variables
         env:
         ...
           - name: FRONT_END_PLAYER_URL
-            value : https://169.47.241.137:30443/players/v1/accounts
+            value : https://169.47.241.213:30443/players/v1/accounts
           - name: FRONT_END_SUCCESS_CALLBACK
-            value : https://169.47.241.137:30443/#/login/callback
+            value : https://169.47.241.213:30443/#/login/callback
           - name: FRONT_END_FAIL_CALLBACK
-            value : https://169.47.241.137:30443/#/game
+            value : https://169.47.241.213:30443/#/game
           - name: FRONT_END_AUTH_URL
-            value : https://169.47.241.137:30443/auth
+            value : https://169.47.241.213:30443/auth
         ...
           - name: PROXY_DOCKER_HOST
-            value : '169.47.241.137'
+            value : '169.47.241.213'
         ...
 ```
 ```yaml
@@ -109,7 +116,7 @@ spec:
 </details>
 
 # 2. Create Volumes in your Cluster
-You would need to create a volume for your cluster. You can use the provided yaml file. The required keystores will be stored in this volume. The volume will also be used by the core services.
+You would need to create a volume for your cluster. You can use the provided yaml file. The required keystores will be stored in this volume. The volume will also be used by the [core services](#core-microservices).
 ```bash
 $ kubectl create -f local-volume.yaml
 persistent volumes "local-volume-1" created
