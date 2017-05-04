@@ -17,8 +17,9 @@ There are several microservices used in this app
 Room: Java based room implementation
 
 ### Platform Services:
-- Amalgam8: Amalgam8 supplies Registry, and a Controller, via which it implements the Service Discovery, and Service Proxying
-- Kafka: Publish/Subscribe solution used by Amalgam8
+
+- [Amalgam8](https://www.amalgam8.io/): Content-based Routing Fabric for Polyglot Microservices. Amalgam8 supplies Registry, and a Controller, via which it implements the Service Discovery, and Service Proxying. In addition, there is an Amalgam8 sidecar associated with each microservice, which automatically registers the microservice with the registry.
+- [Kafka](https://kafka.apache.org): Publish/Subscribe solution used by Amalgam8
 
 Everything would be hosted on a Kubernetes Cluster where you can access your own GameOn app from anywhere.
 
@@ -99,7 +100,7 @@ spec:
 # 2. Create Volumes in your Cluster
 You would need to create a volume for your cluster. You can use the provided yaml file. The required keystores will be stored in this volume. The volume will also be used by the core services.
 ```bash
-$ kubectl create -f local-volumes.yaml
+$ kubectl create -f local-volume.yaml
 persistent volumes "local-volume-1" created
 persistent volumes "keystore-claim" created
 ```
