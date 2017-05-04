@@ -2,32 +2,23 @@
 
 # GameOn! Java Microservices deployment on Kubernetes Cluster
 
-This project demonstrates deployment of a Microservices based application [Game On!](https://gameontext.org/#/) on to Kubernetes cluster. Game On! is a throwback text-based adventure built to help you explore microservice architectures and related concepts. GameOn! users start by creating a simple room, the building block of any adventure game. A user can create in text a simple room in any one of various languages in just a few minutes.
+This project demonstrates deployment of a Microservices based application Game On! on to Kubernetes cluster. Game On! is a throwback text-based adventure built to help you explore microservice architectures and related concepts. GameOn! users start by creating a simple room, the building block of any adventure game. A user can create in text a simple room in any one of various languages in just a few minutes.
 
 There are several microservices used in this app
 
-![GameOn](images/gameon-microservices.png)
-
 ### Core MicroServices:
 
-There are five core Java microservices, using [JAX-RS](https://en.wikipedia.org/wiki/Java_API_for_RESTful_Web_Services), [CDI](https://dzone.com/articles/cdi-di-p1) etc. from [MicroProfile](http://microprofile.io) framework spec.
-
-- [Player](https://github.com/gameontext/gameon-player): Players, are represented by the player Java microservice service, which provides a public API for CRUD operations, and for managing API tokens.
-- [Auth](https://github.com/gameontext/gameon-auth): Java microservice to allow players to connect and identify themselves via a selected "social login"
-- [Mediator](https://github.com/gameontext/gameon-mediator): The Mediator service is implemented in Java using WebSphere Liberty, and connects players to rooms over Websockets
-- [Map](https://github.com/gameontext/gameon-map): The Map service is a Java EE application running on WebSphere Liberty that provides a public REST API using JAX-RS. It stores data in a NoSQL data store, either couchdb or Cloudant
-- [Room](https://github.com/gameontext/gameon-room): Java based room implementation
-
-In addition, Proxy and WebApp complete the core microservices
-
-- [Proxy](https://github.com/gameontext/gameon-proxy): HAProxy based, and is responsible for surfacing the collection of APIs as a single facade for the entire application.
-- [WebApp](https://github.com/gameontext/gameon-webapp): Webapp is a simple nginx process that serves the static files that comprise the front-end of the UI.
-
+- Proxy: HAProxy based, and is responsible for surfacing the collection of APIs as a single facade for the entire application.
+- WebApp: Webapp is a simple nginx process that serves the static files that comprise the front-end of the UI.
+- Player: Players, are represented by the player Java microservice service, which provides a public API for CRUD operations, and for managing API tokens.
+- Auth: Java microservice to allow players to connect and identify themselves via a selected "social login"
+- Mediator: The Mediator service is implemented in Java using WebSphere Liberty, and connects players to rooms over Websockets
+- Map: The Map service is a Java EE application running on WebSphere Liberty that provides a public REST API using JAX-RS. It stores data in a NoSQL data store, either couchdb or Cloudant
+Room: Java based room implementation
 
 ### Platform Services:
-
-- [Amalgam8](https://www.amalgam8.io/): Content-based Routing Fabric for Polyglot Microservices. Amalgam8 supplies Registry, and a Controller, via which it implements the Service Discovery, and Service Proxying. In addition, there ia an Amalgam8 sidecar associated with each microservice, which automatically registers the microservice with the registry. 
-- [Kafka](https://kafka.apache.org): Publish/Subscribe solution used by Amalgam8
+- Amalgam8: Amalgam8 supplies Registry, and a Controller, via which it implements the Service Discovery, and Service Proxying
+- Kafka: Publish/Subscribe solution used by Amalgam8
 
 Everything would be hosted on a Kubernetes Cluster where you can access your own GameOn app from anywhere.
 
@@ -54,8 +45,12 @@ Please follow the [Toolchain instructions](https://github.com/IBM/container-jour
   - 5.2 [Add Rooms](#52-add-rooms)
 
 # 1. Modify the Core services yaml files
-First, you'll need to update the yaml files for the **core services** and **setup.yaml**.
-You will need to get the Public IP address of your cluster.
+You can also use the script provided that replaces the default values to the IP of your current cluster.
+* `./scripts/replace_ip_linux.sh` for linux
+* `./scripts/replace_ip_OSX.sh` for macOS
+
+Or alternatively:
+Get the Public IP address of your cluster.
 ```bash
 $ kubectl get nodes
 NAME             STATUS    AGE
@@ -66,10 +61,6 @@ Take note of the IP address. Go to the **core** folder and change the following 
 > ...
 > value : https://169.47.241.yyy:30443/players/v1/accounts **TO ->** value : https://169.xx.xxx.xxx:30443/players/v1/accounts
 > ...
-
-You can also use the script provided that replaces the default values to the IP of your current cluster.
-* `./replace_ip_linux.sh` for linux
-* `./replace_ip_OSX.sh` for macOS
 
 ```yaml
 Core yaml files should look like this. Change the following env variables
@@ -106,17 +97,20 @@ spec:
     ...
 ```
 # 2. Create Volumes in your Cluster
-You would need to create a volume for your cluster. You can use the provided yaml file. The volume will also be used by the core services. This would contain some required keystores and server configurations.
+You would need to create a volume for your cluster. You can use the provided yaml file. The required keystores will be stored in this volume. The volume will also be used by the core services.
 ```bash
 $ kubectl create -f local-volumes.yaml
 persistent volumes "local-volume-1" created
 persistent volumes "keystore-claim" created
 ```
 
-You can now create the required keystores using the **setup.yaml** file. This will create a Pod and create the keystores. Once it is done, the Pod will terminate. You may delete the pod after.
+You can now create the required keystores using the **setup.yaml** file. This will create a Pod and create the keystores.
 ```bash
 $ kubectl create -f setup.yaml
 ```
+
+Once it is done, the Pod will not run again. You can delete the Pod after using `kubectl delete pod setup` (optional).
+
 If you want to confirm that the Pod has successfully imported the keystores, you can view the Pod's logs.
 ```bash
 $ kubectl logs setup
@@ -136,7 +130,7 @@ Import command completed:  104 entries successfully imported, 0 entries failed o
 ```
 
 # 3. Create the Platform Services
-You can now create the Platform services and deployments of the app.
+You can now create the [Platform services](#platform-services) and deployments of the app.
 ```bash
 $ kubectl create -f platform
 OR alternatively
@@ -155,8 +149,8 @@ If both of them outputs 200, you can proceed to the next step.
 > Note: It can take around 1-2 minutes for the Pods to setup completely.
 
 # 4. Create the Core Services
-Finally, you can create the Core services and deployments of the app.
-*(If you want to have social logins, please follow the steps [here](#a-adding-social-logins) before deploying the core services)*
+Finally, you can create the **[Core services](#core-microservices)** and deployments of the app.
+*(If you want to have social logins, please follow the steps [here](#a-adding-social-logins) before deploying the [core services](#core-microservices))*
 
 
 ```bash
@@ -167,7 +161,7 @@ $ kubectl create -f core/<file-name>.yaml
 ...
 $ kubectl create -f core/webapp.yaml
 ```
-To verify if the core services has finished setting up, you would need to check the logs of the Pod of the proxy. You can get the Pod name of the proxy using **kubectl get pods**
+To verify if the [core services](#core-microservices) has finished setting up, you would need to check the logs of the Pod of the proxy. You can get the Pod name of the proxy using **kubectl get pods**
 ```bash
 kubectl logs proxy-***-**
 ```
@@ -198,7 +192,7 @@ Now that you have successfully deployed your own app in the Bluemix Kubernetes C
 You may want to add social logins so you and your friends can explore the rooms together.
 To add social logins you would need to have developer accounts on the social app you want to use.
 
-> You will need to redeploy your **Core** services with the your own modified yaml files. The next step will show you where to add your API Keys.
+> You will need to redeploy your **[Core services](#core-microservices)** with the your own modified yaml files. The next step will show you where to add your API Keys.
 
 
 ## Github
@@ -212,7 +206,7 @@ For the Authorization callback URL, you will need to put the IP address and the 
 
 You can edit that in the GitHub later if you made a new cluster.
 Now, take note of the **Client ID** and **Client Secret** of the app.
-You will need to add this in the environment variables on the yaml files of your **Core services**
+You will need to add this in the environment variables on the yaml files of your **[Core services](#core-microservices)**
 ```yaml
 ...
 - name: GITHUB_APP_ID
@@ -236,7 +230,7 @@ For the Authorization callback URL, you will need to put the IP address and the 
 > https://169.xxx.xxx.xxx:30443/auth/TwitterAuth
 
 Go to the Keys and Access Tokens section of the twitter application you just registered and take note of the **Consumer Key** and **Consumer Secret** of the app.
-You will need to add this in the environment variables on the yaml files of your **Core services**
+You will need to add this in the environment variables on the yaml files of your **[Core services](#core-microservices)**
 ```yaml
 ...
 - name: TWITTER_CONSUMER_KEY
