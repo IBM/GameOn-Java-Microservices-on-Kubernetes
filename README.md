@@ -10,7 +10,7 @@ There are several microservices used in this app
 
 ### Core MicroServices:
 
-There are five core Java microservices, using [JAX-RS: Java API for RESTful Web Services](), [CDI: Context and Dependency Injection](https://dzone.com/articles/cdi-di-p1) etc. from [MicroProfile](http://microprofile.io) framework spec.
+There are five core Java microservices, using [JAX-RS](https://en.wikipedia.org/wiki/Java_API_for_RESTful_Web_Services), [CDI](https://dzone.com/articles/cdi-di-p1) etc. from [MicroProfile](http://microprofile.io) framework spec.
 
 - [Player](https://github.com/gameontext/gameon-player): Players, are represented by the player Java microservice service, which provides a public API for CRUD operations, and for managing API tokens.
 - [Auth](https://github.com/gameontext/gameon-auth): Java microservice to allow players to connect and identify themselves via a selected "social login"
