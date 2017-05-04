@@ -6,6 +6,8 @@ This project demonstrates deployment of a Microservices based application [Game 
 
 There are several microservices used in this app
 
+![Github](images/gameon_microservices.png)
+
 ### Core MicroServices:
 
 - [Proxy](https://github.com/gameontext/gameon-proxy): HAProxy based, and is responsible for surfacing the collection of APIs as a single facade for the entire application.
@@ -23,7 +25,7 @@ The five main Java microservices are:
 
 ### Platform Services:
 
-- [Amalgam8](https://www.amalgam8.io/): Content-based Routing Fabric for Polyglot Microservices. Amalgam8 supplies Registry, and a Controller, via which it implements the Service Discovery, and Service Proxying
+- [Amalgam8](https://www.amalgam8.io/): Content-based Routing Fabric for Polyglot Microservices. Amalgam8 supplies Registry, and a Controller, via which it implements the Service Discovery, and Service Proxying. In addition, there ia an Amalgam8 sidecar associated with each microservice, which automatically registers the microservice with the registry. 
 - [Kafka](https://kafka.apache.org): Publish/Subscribe solution used by Amalgam8
 
 Everything would be hosted on a Kubernetes Cluster where you can access your own GameOn app from anywhere.
