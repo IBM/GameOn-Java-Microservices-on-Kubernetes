@@ -79,7 +79,7 @@ spec:
           - name: LICENSE
             value : accept
           - name: PROXY_DOCKER_HOST
-            value : '169.47.241.213'
+            value : ''
           - name: ADMIN_PASSWORD
             value : admin
           - name: WLP_SKIP_MAXPERMSIZE

@@ -12,7 +12,7 @@ spec:
     image: anthonyamanse/keystore
     env:
       - name: IP
-        value: 169.47.241.213
+        value: '169.47.241.213'
     volumeMounts:
     - name: keystore
       mountPath: /tmp/keystore/
