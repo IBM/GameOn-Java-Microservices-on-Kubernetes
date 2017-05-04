@@ -6,7 +6,7 @@ This project demonstrates deployment of a Microservices based application [Game 
 
 There are several microservices used in this app
 
-![Github](images/gameon_microservices.png)
+![GameOn](images/gameon-microservices.png)
 
 ### Core MicroServices:
 
