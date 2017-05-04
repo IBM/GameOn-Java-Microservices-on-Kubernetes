@@ -55,7 +55,8 @@ You can also use the script provided that replaces the default values to the IP 
 * `./scripts/replace_ip_linux.sh` for linux
 * `./scripts/replace_ip_OSX.sh` for macOS
 
-Or alternatively:
+<details>
+  <summary>Or alternatively:</summary>
 Get the Public IP address of your cluster.
 ```bash
 $ kubectl get nodes
@@ -102,6 +103,8 @@ spec:
         value: 169.47.241.137
     ...
 ```
+
+</details>
 # 2. Create Volumes in your Cluster
 You would need to create a volume for your cluster. You can use the provided yaml file. The required keystores will be stored in this volume. The volume will also be used by the core services.
 ```bash
