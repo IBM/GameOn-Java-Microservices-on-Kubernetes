@@ -8,17 +8,17 @@ There are several microservices used in this app
 
 ### Core MicroServices:
 
-- Proxy: HAProxy based, and is responsible for surfacing the collection of APIs as a single facade for the entire application.
-- WebApp: Webapp is a simple nginx process that serves the static files that comprise the front-end of the UI.
-- Player: Players, are represented by the player Java microservice service, which provides a public API for CRUD operations, and for managing API tokens.
-- Auth: Java microservice to allow players to connect and identify themselves via a selected "social login"
-- Mediator: The Mediator service is implemented in Java using WebSphere Liberty, and connects players to rooms over Websockets
-- Map: The Map service is a Java EE application running on WebSphere Liberty that provides a public REST API using JAX-RS. It stores data in a NoSQL data store, either couchdb or Cloudant
-Room: Java based room implementation
+- **Proxy**: HAProxy based, and is responsible for surfacing the collection of APIs as a single facade for the entire application.
+- **WebApp**: Webapp is a simple nginx process that serves the static files that comprise the front-end of the UI.
+- **Player**: Players, are represented by the player Java microservice service, which provides a public API for CRUD operations, and for managing API tokens.
+- **Auth**: Java microservice to allow players to connect and identify themselves via a selected "social login"
+- **Mediator**: The Mediator service is implemented in Java using WebSphere Liberty, and connects players to rooms over Websockets
+- **Map**: The Map service is a Java EE application running on WebSphere Liberty that provides a public REST API using JAX-RS. It stores data in a NoSQL data store, either couchdb or Cloudant
+**Room**: Java based room implementation
 
 ### Platform Services:
-- Amalgam8: Amalgam8 supplies Registry, and a Controller, via which it implements the Service Discovery, and Service Proxying
-- Kafka: Publish/Subscribe solution used by Amalgam8
+- **Amalgam8**: Amalgam8 supplies Registry, and a Controller, via which it implements the Service Discovery, and Service Proxying
+- **Kafka**: Publish/Subscribe solution used by Amalgam8
 
 Everything would be hosted on a Kubernetes Cluster where you can access your own GameOn app from anywhere.
 
