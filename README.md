@@ -23,8 +23,8 @@ In addition, Proxy and WebApp complete the core microservices
 
 ### Platform Services:
 
-- [Service Discovery and Registry](https://www.amalgam8.io/): Service Registry and a Controller components, via which it implements the Service Discovery, and Service Proxying. In addition, there is are sidecars associated with each microservice, which automatically registers the microservice with the registry.
-- [Kafka](https://kafka.apache.org): Publish/Subscribe solution used by Amalgam8
+- [Service Discovery and Registry](https://www.amalgam8.io/): Service Registry and Controller components, via which  Service Discovery and Service Proxying are implemented.. In addition, there are sidecars associated with each microservice, which automatically registers the microservice with the registry.
+- [Kafka](https://kafka.apache.org): Publish/Subscribe solution used by Platform
 
 Everything would be hosted on a Kubernetes Cluster where you can access your own GameOn app from anywhere.
 
