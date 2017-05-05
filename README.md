@@ -8,9 +8,9 @@ There are several microservices used in this app
 
 ### Core MicroServices:
 
-There are five core Java microservices, using [JAX-RS](https://en.wikipedia.org/wiki/Java_API_for_RESTful_Web_Services), [CDI](https://dzone.com/articles/cdi-di-p1) etc. which are also part of the [MicroProfile](http://microprofile.io) spec.
+There are five core Java microservices, using [JAX-RS](https://en.wikipedia.org/wiki/Java_API_for_RESTful_Web_Services), [CDI](https://dzone.com/articles/cdi-di-p1) etc. part of the [MicroProfile](http://microprofile.io) spec.
 
-- [Player](https://github.com/gameontext/gameon-player): Players, are represented by the player Java microservice service, which provides a public API for CRUD operations, and for managing API tokens.
+- [Player](https://github.com/gameontext/gameon-player): Players are represented by the player Java microservice which provides a public API for CRUD operations, and for managing API tokens.
 - [Auth](https://github.com/gameontext/gameon-auth): Java microservice to allow players to connect and identify themselves via a selected "social login"
 - [Mediator](https://github.com/gameontext/gameon-mediator): The Mediator service is implemented in Java using WebSphere Liberty, and connects players to rooms over Websockets
 - [Map](https://github.com/gameontext/gameon-map): The Map service is a Java EE application running on WebSphere Liberty that provides a public REST API using JAX-RS. It stores data in a NoSQL data store, either couchdb or Cloudant
@@ -23,8 +23,9 @@ In addition, Proxy and WebApp complete the core microservices
 
 ### Platform Services:
 
-- [Service Discovery and Registry](https://www.amalgam8.io/): Service Registry and Controller components, via which  Service Discovery and Service Proxying are implemented.. In addition, there are sidecars associated with each microservice, which automatically registers the microservice with the registry.
-- [Kafka](https://kafka.apache.org): Publish/Subscribe solution used by Platform
+- [Service Discovery, Registry and Routing](https://www.amalgam8.io/): Service Registry and routing components, via which  Service Discovery and Service Proxying are implemented. In addition, there are sidecars associated with each microservice, which automatically registers the microservice with the registry.
+- [Redis](): Store the addresses used by Sidecars
+- [Kafka](https://kafka.apache.org): Publish/Subscribe solution used by services and the platform.
 
 Everything would be hosted on a Kubernetes Cluster where you can access your own GameOn app from anywhere.
 
