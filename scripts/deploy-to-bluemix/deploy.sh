@@ -85,7 +85,7 @@ echo "Waiting for the amalgam8 controlplane to finish setup..."
 TRIES=0
 while true
 do
-code=$(curl -w '%{http_code}' http://$IP_ADDR:31200/health -o /dev/null)
+code=$(curl -sw '%{http_code}' http://$IP_ADDR:31200/health -o /dev/null)
     if [ "$code" = "200" ]; then
         echo "Controller is up"
         break
@@ -102,7 +102,7 @@ done
 TRIES=0
 while true
 do
-code=$(curl -w '%{http_code}' http://$IP_ADDR:31300/uptime -o /dev/null)
+code=$(curl -sw '%{http_code}' http://$IP_ADDR:31300/uptime -o /dev/null)
     if [ "$code" = "200" ]; then
         echo "Registry is up"
         break

@@ -34,15 +34,24 @@ else
           if [[ -z $prevIP ]]
           then
               echo "$1 not found in yaml files. Please check your yaml files."
-          else
-
-              echo "Replacing $1 to $IP_ADDR in core/*.yaml and setup.yaml"
-              for filename in core/*.yaml
-              do
-                  sed -i s#$1#$IP_ADDR# $filename
-              done
-              sed -i s#$1#$IP_ADDR# setup.yaml
-          fi
+            else
+                if [[ -z $2 ]]
+                then
+                    echo "Replacing $1 to $IP_ADDR in core/*.yaml and setup.yaml"
+                    for filename in core/*.yaml
+                    do
+                        sed -i s#$1#$IP_ADDR# $filename
+                    done
+                    sed -i s#$1#$IP_ADDR# setup.yaml
+                else
+                    echo "Replacing $1 to $2 in core/*.yaml and setup.yaml"
+                    for filename in core/*.yaml
+                    do
+                        sed -i s#$1#$2# $filename
+                    done
+                    sed -i s#$1#$2# setup.yaml
+                fi
+            fi
       else
           echo "Invalid IP"
       fi

@@ -63,13 +63,13 @@ spec:
           - name: KAFKA_SERVICE_URL
             value : kafka:9092
           - name: FRONT_END_PLAYER_URL
-            value : https://169.47.241.213:30443/players/v1/accounts
+            value : https://192.168.99.100:30443/players/v1/accounts
           - name: FRONT_END_SUCCESS_CALLBACK
-            value : https://169.47.241.213:30443/#/login/callback
+            value : https://192.168.99.100:30443/#/login/callback
           - name: FRONT_END_FAIL_CALLBACK
-            value : https://169.47.241.213:30443/#/game
+            value : https://192.168.99.100:30443/#/game
           - name: FRONT_END_AUTH_URL
-            value : https://169.47.241.213:30443/auth
+            value : https://192.168.99.100:30443/auth
           - name: GAMEON_MODE
             value : development
           - name: TARGET_PLATFORM
@@ -79,7 +79,7 @@ spec:
           - name: LICENSE
             value : accept
           - name: PROXY_DOCKER_HOST
-            value : '169.47.241.213'
+            value : '192.168.99.100'
           - name: ADMIN_PASSWORD
             value : admin
           - name: WLP_SKIP_MAXPERMSIZE

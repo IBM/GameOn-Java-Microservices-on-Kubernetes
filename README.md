@@ -302,11 +302,12 @@ To register the deployed rooms in the cluster, you will need to use the UI of yo
   * `kubectl delete -f core`
 * To delete everything:
   * `kubectl delete svc,deploy,pvc -l app=gameon`
+  * `kubectl delete pod setup`
   * `kubectl delete pv local-volume-1`
 
 ## References
 
-* [GameOn](https://gameontext.org) - The original game on app. The journey is based on [deploying GameOn using Dockers](https://book.gameontext.org/walkthroughs/local-docker.html)
+* [GameOn](https://gameontext.org) - The original game on app. The journey is based on [deploying GameOn using Docker](https://book.gameontext.org/walkthroughs/local-docker.html)
 
 ## License
 
