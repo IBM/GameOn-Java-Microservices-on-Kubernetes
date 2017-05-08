@@ -58,7 +58,7 @@ You can also use the script provided that replaces the default values to the IP 
 
 The script replaces every instance of `169.47.241.213` in the files of your [core services](#core-microservices) yaml files  and `setup.yaml` to the IP of your cluster *(found by executing `kubectl get nodes`)*.
 
-[Other usage for the script can be found here.](/tree/master/scripts#replace_ip_-os-sh)
+[Other usage for the script can be found here.](/scripts#replace_ip_-os-sh)
 
 <details>
 
