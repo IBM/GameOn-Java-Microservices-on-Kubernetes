@@ -31,7 +31,7 @@ Everything would be hosted on a Kubernetes Cluster where you can access your own
 
 ## Prerequisite
 
-To deploy the game locally, follow the instructions via docker-compose in GameOn repository here [local development](https://github.com/gameontext/gameon#local-room-development).
+To deploy the game locally, follow the instructions via docker-compose in GameOn repository [here](https://github.com/gameontext/gameon#local-room-development).
 
 To follow the steps here, create a Kubernetes cluster with [IBM Bluemix Container Service](https://github.com/IBM/container-journey-template) to deploy in cloud. The code here is regularly tested against [Kubernetes Cluster from Bluemix Container Service](https://console.ng.bluemix.net/docs/containers/cs_ov.html#cs_ov) using Travis.
 
