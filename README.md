@@ -44,7 +44,7 @@ Please follow the [Toolchain instructions](https://github.com/IBM/container-jour
 
 ## Steps
 1. [Modify the Core services yaml files](#1-modify-the-core-services-yaml-files)
-2. [Create volumes in your Cluster](#2-create-volumes-in-your-cluster)
+2. [Create volumes in your Cluster](#2-create-a-volume-for-your-cluster)
 3. [Create the Platform Services](#3-create-the-platform-services)
 4. [Create the Core Services](#4-create-the-core-services)
 5. [Explore your GameOn App](#5-explore-your-gameon-app)
@@ -60,7 +60,7 @@ The script replaces every instance of `169.47.241.213` in the files of your [cor
 
 [Other usage for the script can be found here.](/scripts#replace_ip_-os-sh)
 
-# 2. Create Volumes in your Cluster
+# 2. Create a Volume for your Cluster
 You would need to create a volume for your cluster. You can use the provided yaml file. The required keystores will be stored in this volume. The volume will also be used by the [core services](#core-microservices).
 ```bash
 $ kubectl create -f local-volume.yaml
