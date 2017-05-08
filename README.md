@@ -2,7 +2,7 @@
 
 # GameOn! Java Microservices on Kubernetes with polyglot ecosystem
 
-This code demonstrates deployment of a Microservices based application [Game On!]() on to Kubernetes cluster which exists together with a polyglot ecosystem. Game On! is a throwback text-based adventure built to help you explore microservice architectures and related concepts. GameOn! deployment has two sets of microservice, core and platform. The core microservices are written in Java, coexisting with other polyglot microservices. In addition, there are platform services, which provide service discovery, registration and routing for different microservices. All run in in Docker containers managed by Kubernetes Cluster. 
+This code demonstrates deployment of a Microservices based application [Game On!](https://book.gameontext.org) on to Kubernetes cluster which exists together with a polyglot ecosystem. Game On! is a throwback text-based adventure built to help you explore microservice architectures and related concepts. GameOn! deployment has two sets of microservice, core and platform. The core microservices are written in Java, coexisting with other polyglot microservices. In addition, there are platform services, which provide service discovery, registration and routing for different microservices. All run in in Docker containers managed by Kubernetes Cluster.
 
 ![Twitter](images/gameon-microservices.png)
 
@@ -58,10 +58,7 @@ You can also use the script provided that replaces the default values to the IP 
 
 The script replaces every instance of `169.47.241.213` in the files of your [core services](#core-microservices) yaml files  and `setup.yaml` to the IP of your cluster *(found by executing `kubectl get nodes`)*.
 
-Usage for the script can also be
-* `./scripts/replace_ip_<OS>.sh <IP-to-be-replaced>` replaces every instance of `<IP-to-be-replaced>` in the same yaml files to the IP of your current cluster.
-
-This can be used if you have already changed `169.47.241.213` to a new IP and you want to work in another cluster that has a different IP.
+[Other usage for the script can be found here.](/tree/master/scripts#replace_ip_-os-sh)
 
 <details>
 
