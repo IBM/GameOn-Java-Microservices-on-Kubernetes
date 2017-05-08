@@ -44,19 +44,21 @@ Please follow the [Toolchain instructions](https://github.com/IBM/container-jour
 
 ## Steps
 1. [Modify the Core services yaml files](#1-modify-the-core-services-yaml-files)
-2. [Create volumes in your Cluster](#2-create-a-volume-for-your-cluster)
+2. [Create a Volume for your Cluster](#2-create-a-volume-for-your-cluster)
 3. [Create the Platform Services](#3-create-the-platform-services)
 4. [Create the Core Services](#4-create-the-core-services)
 5. [Explore your GameOn App](#5-explore-your-gameon-app)
   - 5.1 [Add Social Logins](#51-add-social-logins)
   - 5.2 [Add Rooms](#52-add-rooms)
 
+#### [Troubleshooting](#troubleshooting-1)
+
 # 1. Modify the Core services yaml files
-You can also use the script provided that replaces the default values to the IP of your current cluster.
+You can use the script provided that replaces the default values in the yaml files to the IP of your current cluster.
 * `./scripts/replace_ip_linux.sh` for linux
 * `./scripts/replace_ip_OSX.sh` for macOS
 
-The script replaces every instance of `169.47.241.213` in the files of your [core services](#core-microservices) yaml files  and `setup.yaml` to the IP of your cluster *(found by executing `kubectl get nodes`)*.
+> The script replaces every instance of `169.47.241.213` in the files of your [core services](#core-microservices) yaml files  and `setup.yaml` to the IP of your cluster *(found by executing `kubectl get nodes`)*.
 
 [Other usage for the script can be found here.](/scripts#replace_ip_-os-sh)
 
