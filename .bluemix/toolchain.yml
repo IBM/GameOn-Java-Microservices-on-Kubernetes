@@ -1,6 +1,6 @@
 ---
-name: "Deploy Kubernetes Guestbook sample to Bluemix"
-description: "Toolchain to deploy Kubernetes Guestbook sample to Bluemix"
+name: "Deploy GameOn! Java Microservices sample to Bluemix"
+description: "Toolchain to deploy GameOn! Java Microservices on Kubernetes Cluster to Bluemix"
 version: 0.1
 image: data:image/svg+xml;base64,$file(toolchain.svg,base64)
 icon: data:image/svg+xml;base64,$file(icon.svg,base64)
@@ -13,7 +13,7 @@ sample-repo:
   service_id: githubpublic
   parameters:
     repo_name: "{{name}}"
-    repo_url: https://github.com/IBM/kubernetes-container-service-gameon-java-microservices.git
+    repo_url: https://github.com/IBM/GameOn-Java-Microservices-on-Kubernetes.git
     type: fork
     has_issues: false
 
