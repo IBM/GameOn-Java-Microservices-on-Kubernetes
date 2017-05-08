@@ -60,59 +60,6 @@ The script replaces every instance of `169.47.241.213` in the files of your [cor
 
 [Other usage for the script can be found here.](/scripts#replace_ip_-os-sh)
 
-<details>
-
-<summary>Or alternatively:</summary>
-Get the Public IP address of your cluster.
-
-```bash
-$ kubectl get nodes
-NAME             STATUS    AGE
-169.xx.xxx.xxx   Ready     13d
-```
-Take note of the IP address. Go to the **core** folder and change the following values on the environment variables of the container **on every file** to the IP address you have. Maintain the port number.
-> Example:
-> ...
-> value : https://169.47.241.yyy:30443/players/v1/accounts **TO ->** value : https://169.xx.xxx.xxx:30443/players/v1/accounts
-> ...
-
-```yaml
-Core yaml files should look like this. Change the following env variables
-    spec:
-      containers:
-      - image: gameontext/gameon-*
-        name: *
-        env:
-        ...
-          - name: FRONT_END_PLAYER_URL
-            value : https://169.47.241.213:30443/players/v1/accounts
-          - name: FRONT_END_SUCCESS_CALLBACK
-            value : https://169.47.241.213:30443/#/login/callback
-          - name: FRONT_END_FAIL_CALLBACK
-            value : https://169.47.241.213:30443/#/game
-          - name: FRONT_END_AUTH_URL
-            value : https://169.47.241.213:30443/auth
-        ...
-          - name: PROXY_DOCKER_HOST
-            value : '169.47.241.213'
-        ...
-```
-```yaml
-setup.yaml
-...
-spec:
-  restartPolicy: Never
-  containers:
-  - name: setup
-    image: anthonyamanse/keystore
-    env:
-      - name: IP
-        value: 169.47.241.137
-    ...
-```
-
-</details>
-
 # 2. Create Volumes in your Cluster
 You would need to create a volume for your cluster. You can use the provided yaml file. The required keystores will be stored in this volume. The volume will also be used by the [core services](#core-microservices).
 ```bash
