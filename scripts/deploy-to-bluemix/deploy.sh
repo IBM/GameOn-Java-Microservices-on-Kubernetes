@@ -5,6 +5,10 @@ echo "Creating GameOn App"
 IP_ADDR=$(bx cs workers $CLUSTER_NAME | grep normal | awk '{ print $2 }')
 if [ -z $IP_ADDR ]; then
   echo "$CLUSTER_NAME not created or workers not ready"
+  echo "Running clusters are: "
+  bx cs clusters
+  echo "Running workers of $CLUSTER_NAME"
+  bx cs workers $CLUSTER_NAME
   exit 1
 fi
 
@@ -12,6 +16,10 @@ echo -e "Configuring vars"
 exp=$(bx cs cluster-config $CLUSTER_NAME | grep export)
 if [ $? -ne 0 ]; then
   echo "Cluster $CLUSTER_NAME not created or not ready."
+  echo "Running workers of $CLUSTER_NAME"
+  bx cs workers $CLUSTER_NAME
+  echo "Cluster-config of $CLUSTER_NAME"
+  bx cs cluster-config $CLUSTER_NAME
   exit 1
 fi
 eval "$exp"
@@ -47,11 +55,13 @@ do
     if [ "$keystore" = "104" ]
     then
         echo "Setup successfull"
+        kubectl logs setup
         break
     fi
     if [ $TRIES -eq 10 ]
     then
         echo "Failed setting up keystore values."
+        kubectl logs setup
         exit 1
     fi
     TRIES=$((TRIES+1))
@@ -93,6 +103,7 @@ code=$(curl -sw '%{http_code}' http://$IP_ADDR:31200/health -o /dev/null)
     if [ $TRIES -eq 10 ]
     then
         echo "Failed setting up controlplane."
+        kubectl logs $(kubectl get pods | grep controller | awk '{print $1}')
         exit 1
     fi
     TRIES=$((TRIES+1))
@@ -110,6 +121,7 @@ code=$(curl -sw '%{http_code}' http://$IP_ADDR:31300/uptime -o /dev/null)
     if [ $TRIES -eq 10 ]
     then
         echo "Failed setting up controlplane."
+        kubectl logs $(kubectl get pods | grep controller | awk '{print $1}')
         exit 1
     fi
     TRIES=$((TRIES+1))
