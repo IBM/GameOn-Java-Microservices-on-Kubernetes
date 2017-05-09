@@ -54,7 +54,7 @@ do
     keystore=$(kubectl logs setup | grep Import | awk '{print $4}')
     if [ "$keystore" = "104" ]
     then
-        echo "Setup successfull"
+        echo "Setup successful"
         kubectl logs setup
         break
     fi
