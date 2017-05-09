@@ -121,7 +121,7 @@ code=$(curl -sw '%{http_code}' http://$IP_ADDR:31300/uptime -o /dev/null)
     if [ $TRIES -eq 10 ]
     then
         echo "Failed setting up controlplane."
-        kubectl logs $(kubectl get pods | grep controller | awk '{print $1}')
+        kubectl logs $(kubectl get pods | grep registry | awk '{print $1}')
         exit 1
     fi
     TRIES=$((TRIES+1))
