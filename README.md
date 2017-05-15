@@ -112,8 +112,8 @@ $ kubectl create -f platform/registry.yaml
 
 To check if the control plane (controller and registry) is up:
 ```bash
-$ curl -w "%{http_code}" "<Public IP of your cluster>:31200/health" -o /dev/null
-$ curl -w "%{http_code}" "<Public IP of your kubernetes>:31300/uptime" -o /dev/null
+$ curl -sw "%{http_code}" "<Public IP of your cluster>:31200/health" -o /dev/null
+$ curl -sw "%{http_code}" "<Public IP of your kubernetes>:31300/uptime" -o /dev/null
 ```
 If both of them outputs 200, you can proceed to the next step.
 > Note: It can take around 1-2 minutes for the Pods to setup completely.
