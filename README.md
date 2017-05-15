@@ -77,6 +77,8 @@ You can now create the required keystores using the **setup.yaml** file. This wi
 $ kubectl create -f setup.yaml
 ```
 
+> You can find the Dockerfile and script for generating keystore in [containers/setup/ folder](containers/setup). You can build your own image using the provided Dockerfile.
+
 Once it is done, the Pod will not run again. You can delete the Pod after using `kubectl delete pod setup` (optional).
 
 If you want to confirm that the Pod has successfully imported the keystores, you can view the Pod's logs.
