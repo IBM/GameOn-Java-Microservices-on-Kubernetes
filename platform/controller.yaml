@@ -39,7 +39,7 @@ spec:
         - name: A8_DATABASE_TYPE
           value: redis
         - name: A8_DATABASE_HOST
-          value: redis://redis:6379
+          value: redis://$(REDIS_SERVICE_HOST):$(REDIS_SERVICE_PORT)
         ports:
         - containerPort: 8080
           name: controller

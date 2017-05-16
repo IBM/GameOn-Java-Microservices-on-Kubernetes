@@ -29,7 +29,7 @@ spec:
         tier: kafka
     spec:
       containers:
-      - image: rshriram/kafka-0.9
+      - image: spotify/kafka
         name: kafka
         env:
         - name: ADVERTISED_HOST
