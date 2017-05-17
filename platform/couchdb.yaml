@@ -29,7 +29,7 @@ spec:
         tier: couchdb
     spec:
       containers:
-      - image: klaemo/couchdb:1.6.1
+      - image: couchdb:1.6.1
         name: couchdb
         ports:
         - containerPort: 5984

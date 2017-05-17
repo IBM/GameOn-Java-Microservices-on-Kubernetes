@@ -77,6 +77,8 @@ You can now create the required keystores using the **setup.yaml** file. This wi
 $ kubectl create -f setup.yaml
 ```
 
+> You can find the Dockerfile and script for generating keystore in [containers/setup/ folder](containers/setup). You can build your own image using the provided Dockerfile.
+
 Once it is done, the Pod will not run again. You can delete the Pod after using `kubectl delete pod setup` (optional).
 
 If you want to confirm that the Pod has successfully imported the keystores, you can view the Pod's logs.
@@ -110,8 +112,8 @@ $ kubectl create -f platform/registry.yaml
 
 To check if the control plane (controller and registry) is up:
 ```bash
-$ curl -w "%{http_code}" "<Public IP of your cluster>:31200/health" -o /dev/null
-$ curl -w "%{http_code}" "<Public IP of your kubernetes>:31300/uptime" -o /dev/null
+$ curl -sw "%{http_code}" "<Public IP of your cluster>:31200/health" -o /dev/null
+$ curl -sw "%{http_code}" "<Public IP of your kubernetes>:31300/uptime" -o /dev/null
 ```
 If both of them outputs 200, you can proceed to the next step.
 > Note: It can take around 1-2 minutes for the Pods to setup completely.
