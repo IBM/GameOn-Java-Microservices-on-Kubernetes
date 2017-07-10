@@ -59,7 +59,7 @@ do
         echo "Setup successfull"
         break
     fi
-    if [ $TRIES -eq 10 ]
+    if [ $TRIES -eq 20 ]
     then
         echo "Failed setting up keystore values."
         exit 1
