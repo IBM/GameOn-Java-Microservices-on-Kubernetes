@@ -43,7 +43,7 @@ function initial_setup() {
 IP=$(kubectl get nodes | grep Ready | awk '{print $1}')
 kubectl create -f local-volume.yaml
 sleep 5s
-sed -i s#169.47.241.213#$IP#g setup.yaml
+sed -i s#169\.47\.241\.213#$IP#g setup.yaml
 kubectl create -f setup.yaml
 echo "Waiting for container to setup"
 sleep 15s
