@@ -46,7 +46,7 @@ sleep 5s
 sed -i s#169\.47\.241\.213#$IP#g setup.yaml
 kubectl create -f setup.yaml
 echo "Waiting for container to setup"
-sleep 1m
+sleep 45
 
 keystore=$(kubectl logs setup | grep Import | awk '{print $4}')
 TRIES=0
