@@ -46,7 +46,7 @@ sleep 5s
 sed -i s#169\.47\.241\.213#$IP#g setup.yaml
 kubectl create -f setup.yaml
 echo "Waiting for container to setup"
-sleep 15s
+sleep 1m
 
 keystore=$(kubectl logs setup | grep Import | awk '{print $4}')
 TRIES=0
@@ -59,7 +59,7 @@ do
         echo "Setup successfull"
         break
     fi
-    if [ $TRIES -eq 20 ]
+    if [ $TRIES -eq 40 ]
     then
         echo "Failed setting up keystore values."
         exit 1
