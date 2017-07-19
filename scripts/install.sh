@@ -70,7 +70,7 @@ done
 }
 
 function create_platform_services() {
-IP=$(kubectl get nodes | grep Ready | awk '{print $1}')
+IP=$(kubectl get po -l tier=controller -o jsonpath='{.items[0].status.hostIP}')
 kubectl create -f platform
 
 echo "Waiting for pods to setup"
@@ -110,7 +110,7 @@ code=$(curl -sw '%{http_code}' http://$IP:31200/health -o /dev/null)
     TRIES=$((TRIES+1))
     sleep 5s
 done
-
+IP=$(kubectl get po -l tier=registry -o jsonpath='{.items[0].status.hostIP}')
 TRIES=0
 while true
 do
