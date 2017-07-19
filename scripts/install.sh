@@ -129,9 +129,9 @@ done
 }
 
 function create_core_services() {
-IP=$(kubectl get nodes | grep Ready | awk '{print $1}')
+IP=$(kubectl get po -l tier=proxy -o jsonpath='{.items[0].status.hostIP}')
 
-sed -i s#169.47.241.213#$IP#g core/*
+sed -i s#169\.47\.241\.213#$IP#g core/*
 
 kubectl create -f core
 
