@@ -70,7 +70,6 @@ done
 }
 
 function create_platform_services() {
-IP=$(kubectl get po -l tier=controller -o jsonpath='{.items[0].status.hostIP}')
 kubectl create -f platform
 
 echo "Waiting for pods to setup"
@@ -93,7 +92,7 @@ done
 
 echo "Pods for the platform services are now Running."
 echo "Waiting for the amalgam8 controlplane to finish setup..."
-
+IP=$(kubectl get po -l tier=controller -o jsonpath='{.items[0].status.hostIP}')
 TRIES=0
 while true
 do
