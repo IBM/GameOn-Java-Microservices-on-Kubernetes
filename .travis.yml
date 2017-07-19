@@ -2,7 +2,7 @@ language: bash
 script: true
 sudo: required
 before_install:
-- travis wait bash scripts/install.sh
+- travis_wait bash scripts/install.sh
 group: stable
 dist: precise
 os: linux
