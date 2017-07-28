@@ -53,12 +53,18 @@ Please follow the [Toolchain instructions](https://github.com/IBM/container-jour
 
 #### [Troubleshooting](#troubleshooting-1)
 
-# 1. Modify the Core services yaml files
-You can use the script provided that replaces the default values in the yaml files to the IP of your current cluster.
-* `./scripts/replace_ip_linux.sh` for linux
-* `./scripts/replace_ip_OSX.sh` for macOS
+# 1. Modify the ConfigMap yaml file
+Change these values on the `gameon-configmap.yaml` file. Change `169.47.241.213` to the public IP of your cluster. You can get the IP from `bx cs workers <your-cluster-name>` for the Bluemix Container Service.
+```yaml
+FRONT_END_PLAYER_URL: https://169.47.241.213:30443/players/v1/accounts
+FRONT_END_SUCCESS_CALLBACK: https://169.47.241.213:30443/#/login/callback
+FRONT_END_FAIL_CALLBACK: https://169.47.241.213:30443/#/game
+FRONT_END_AUTH_URL: https://169.47.241.213:30443/auth
+...
+PROXY_DOCKER_HOST: '169.47.241.213'
+```
 
-> The script replaces every instance of `169.47.241.213` in the files of your [core services](#core-microservices) yaml files  and `setup.yaml` to the IP of your cluster *(found by executing `kubectl get nodes`)*.
+An easy way to change these values is to do `sed -i s#169\.47\.241\.213#<Public-IP-of-your-cluster#g gameon-configmap.yaml` or `sed -i '' s#169\.47\.241\.213#<Public-IP-of-your-cluster>#g gameon-configmap.yaml`.
 
 [Other usage for the script can be found here.](/scripts#replace_ip_-os-sh)
 
