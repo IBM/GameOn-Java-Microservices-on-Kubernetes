@@ -15,15 +15,15 @@ data:
   PLAYER_SERVICE_URL: http://127.0.0.1:6379/players/players/v1/accounts
   COUCHDB_SERVICE_URL: http://couchdb:5984
   KAFKA_SERVICE_URL: kafka:9092
-  FRONT_END_PLAYER_URL: https://173.193.107.30:30443/players/v1/accounts
-  FRONT_END_SUCCESS_CALLBACK: https://173.193.107.30:30443/#/login/callback
-  FRONT_END_FAIL_CALLBACK: https://173.193.107.30:30443/#/game
-  FRONT_END_AUTH_URL: https://173.193.107.30:30443/auth
+  FRONT_END_PLAYER_URL: https://169.47.241.213:30443/players/v1/accounts
+  FRONT_END_SUCCESS_CALLBACK: https://169.47.241.213:30443/#/login/callback
+  FRONT_END_FAIL_CALLBACK: https://169.47.241.213:30443/#/game
+  FRONT_END_AUTH_URL: https://169.47.241.213:30443/auth
   GAMEON_MODE: development
   TARGET_PLATFORM: local
   SYSTEM_ID: game-on.org
   LICENSE: accept
-  PROXY_DOCKER_HOST: '173.193.107.30'
+  PROXY_DOCKER_HOST: '169.47.241.213'
   ADMIN_PASSWORD: admin
   WLP_SKIP_MAXPERMSIZE: 'true'
   WLP_OUTPUT_DIR: /opt/ibm/wlp/usr/servers/
