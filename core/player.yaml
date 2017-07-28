@@ -46,67 +46,160 @@ spec:
         name: player
         env:
           - name: service_map
-            value : https://map:9443/map/v1/sites
+            valueFrom:
+              configMapKeyRef:
+                name: gameon-env
+                key: service_map
           - name: service_room
-            value : ws://room:9080/rooms
+            valueFrom:
+              configMapKeyRef:
+                name: gameon-env
+                key: service_room
           - name: service_simpleroom
-            value : ws://simpleroom:9090/rooms
+            valueFrom:
+              configMapKeyRef:
+                name: gameon-env
+                key: service_simpleroom
           - name: GITHUB_APP_ID
-            value : ''
+            valueFrom:
+              configMapKeyRef:
+                name: gameon-env
+                key: GITHUB_APP_ID
           - name: GITHUB_APP_SECRET
-            value : ''
+            valueFrom:
+              configMapKeyRef:
+                name: gameon-env
+                key: GITHUB_APP_SECRET
           - name: TWITTER_CONSUMER_KEY
-            value : ''
+            valueFrom:
+              configMapKeyRef:
+                name: gameon-env
+                key: TWITTER_CONSUMER_KEY
           - name: TWITTER_CONSUMER_SECRET
-            value : ''
+            valueFrom:
+              configMapKeyRef:
+                name: gameon-env
+                key: TWITTER_CONSUMER_SECRET
           - name: MAP_SERVICE_URL
-            value : http://127.0.0.1:6379/map/map/v1/sites
+            valueFrom:
+              configMapKeyRef:
+                name: gameon-env
+                key: MAP_SERVICE_URL
           - name: PLAYER_SERVICE_URL
-            value : http://127.0.0.1:6379/players/players/v1/accounts
+            valueFrom:
+              configMapKeyRef:
+                name: gameon-env
+                key: PLAYER_SERVICE_URL
           - name: COUCHDB_SERVICE_URL
-            value : http://couchdb:5984
+            valueFrom:
+              configMapKeyRef:
+                name: gameon-env
+                key: COUCHDB_SERVICE_URL
           - name: KAFKA_SERVICE_URL
-            value : kafka:9092
+            valueFrom:
+              configMapKeyRef:
+                name: gameon-env
+                key: KAFKA_SERVICE_URL
           - name: FRONT_END_PLAYER_URL
-            value : https://169.47.241.213:30443/players/v1/accounts
+            valueFrom:
+              configMapKeyRef:
+                name: gameon-env
+                key: FRONT_END_PLAYER_URL
           - name: FRONT_END_SUCCESS_CALLBACK
-            value : https://169.47.241.213:30443/#/login/callback
+            valueFrom:
+              configMapKeyRef:
+                name: gameon-env
+                key: FRONT_END_SUCCESS_CALLBACK
           - name: FRONT_END_FAIL_CALLBACK
-            value : https://169.47.241.213:30443/#/game
+            valueFrom:
+              configMapKeyRef:
+                name: gameon-env
+                key: FRONT_END_FAIL_CALLBACK
           - name: FRONT_END_AUTH_URL
-            value : https://169.47.241.213:30443/auth
+            valueFrom:
+              configMapKeyRef:
+                name: gameon-env
+                key: FRONT_END_AUTH_URL
           - name: GAMEON_MODE
-            value : development
+            valueFrom:
+              configMapKeyRef:
+                name: gameon-env
+                key: GAMEON_MODE
           - name: TARGET_PLATFORM
-            value : local
+            valueFrom:
+              configMapKeyRef:
+                name: gameon-env
+                key: TARGET_PLATFORM
           - name: SYSTEM_ID
-            value : game-on.org
+            valueFrom:
+              configMapKeyRef:
+                name: gameon-env
+                key: SYSTEM_ID
           - name: LICENSE
-            value : accept
+            valueFrom:
+              configMapKeyRef:
+                name: gameon-env
+                key: LICENSE
           - name: PROXY_DOCKER_HOST
-            value : '169.47.241.213'
+            valueFrom:
+              configMapKeyRef:
+                name: gameon-env
+                key: PROXY_DOCKER_HOST
           - name: ADMIN_PASSWORD
-            value : admin
+            valueFrom:
+              configMapKeyRef:
+                name: gameon-env
+                key: ADMIN_PASSWORD
           - name: WLP_SKIP_MAXPERMSIZE
-            value : 'true'
+            valueFrom:
+              configMapKeyRef:
+                name: gameon-env
+                key: WLP_SKIP_MAXPERMSIZE
           - name: WLP_OUTPUT_DIR
-            value : /opt/ibm/wlp/usr/servers/
+            valueFrom:
+              configMapKeyRef:
+                name: gameon-env
+                key: WLP_OUTPUT_DIR
           - name: LOG_DIR
-            value : /opt/ibm/wlp/usr/servers/defaultServer/logs
+            valueFrom:
+              configMapKeyRef:
+                name: gameon-env
+                key: LOG_DIR
           - name: MAP_KEY
-            value : fish
+            valueFrom:
+              configMapKeyRef:
+                name: gameon-env
+                key: MAP_KEY
           - name: COUCHDB_USER
-            value : mapUser
+            valueFrom:
+              configMapKeyRef:
+                name: gameon-env
+                key: COUCHDB_USER
           - name: COUCHDB_PASSWORD
-            value : myCouchDBSecret
+            valueFrom:
+              configMapKeyRef:
+                name: gameon-env
+                key: COUCHDB_PASSWORD
           - name: A8_REGISTRY_URL
-            value : http://registry:8080
+            valueFrom:
+              configMapKeyRef:
+                name: gameon-env
+                key: A8_REGISTRY_URL
           - name: A8_CONTROLLER_URL
-            value : http://controller:8080
+            valueFrom:
+              configMapKeyRef:
+                name: gameon-env
+                key: A8_CONTROLLER_URL
           - name: A8_CONTROLLER_POLL
-            value : 5s
+            valueFrom:
+              configMapKeyRef:
+                name: gameon-env
+                key: A8_CONTROLLER_POLL
           - name: A8_CONTROLLER_POLL
-            value : 5s
+            valueFrom:
+              configMapKeyRef:
+                name: gameon-env
+                key: A8_CONTROLLER_POLL
         ports:
         - containerPort: 4201
           name: player-1

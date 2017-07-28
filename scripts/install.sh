@@ -25,6 +25,7 @@ sudo mv ./kubectl /usr/local/bin/kubectl
 function cluster_setup() {
 bx cs workers $CLUSTER_NAME
 $(bx cs cluster-config $CLUSTER_NAME | grep export)
+kubectl delete --ignore-not-found=true -f gameon-configmap.yaml
 kubectl delete pvc -l app=gameon
 kubectl delete --ignore-not-found=true -f core
 kubectl delete --ignore-not-found=true -f platform
@@ -43,7 +44,7 @@ function initial_setup() {
 IP=$(kubectl get nodes | grep Ready | awk '{print $1}' | head -1)
 kubectl create -f local-volume.yaml
 sleep 5s
-sed -i s#169\.47\.241\.213#$IP#g setup.yaml
+sed -i s#169\.47\.241\.213#$IP#g gameon-configmap.yaml
 kubectl create -f setup.yaml
 echo "Waiting for container to setup"
 sleep 45
@@ -129,9 +130,6 @@ done
 }
 
 function create_core_services() {
-IP=$(kubectl get nodes | grep Ready | awk '{print $1}' | head -1)
-
-sed -i s#169\.47\.241\.213#$IP#g core/*
 
 kubectl create -f core
 
