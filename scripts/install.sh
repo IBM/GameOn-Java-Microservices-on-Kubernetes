@@ -45,6 +45,7 @@ IP=$(kubectl get nodes | grep Ready | awk '{print $1}' | head -1)
 kubectl create -f local-volume.yaml
 sleep 5s
 sed -i s#169\.47\.241\.213#$IP#g gameon-configmap.yaml
+kubectl create -f gameon-configmap.yaml
 kubectl create -f setup.yaml
 echo "Waiting for container to setup"
 sleep 45

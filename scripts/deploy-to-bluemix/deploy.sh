@@ -40,7 +40,7 @@ done
 kubectl delete --ignore-not-found=true -f local-volume.yaml
 
 
-sed -i s#169.47.241.213#$IP_ADDR#g gameon-configmap.yaml
+sed -i s#169\.47\.241\.213#$IP_ADDR#g gameon-configmap.yaml
 
 echo -e "Creating config map"
 kubectl create -f gameon-configmap.yaml
