@@ -265,6 +265,7 @@ To register the deployed rooms in the cluster, you will need to use the UI of yo
   * `kubectl delete svc,deploy,pvc -l app=gameon`
   * `kubectl delete pod setup`
   * `kubectl delete pv local-volume-1`
+  * `kubectl delete -f gameon-configmap.yaml`
 
 ## References
 
