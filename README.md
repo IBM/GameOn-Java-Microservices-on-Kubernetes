@@ -55,6 +55,8 @@ Please follow the [Toolchain instructions](https://github.com/IBM/container-jour
 
 # 1. Modify the ConfigMap yaml file
 Change these values on the `gameon-configmap.yaml` file. Change `PLACEHOLDER_IP` to the public IP of your cluster. You can get the IP from `bx cs workers <your-cluster-name>` for the Bluemix Container Service. Ex. `192.168.99.100`
+> For minikube, you can get the IP using `minikube ip`
+
 ```yaml
 FRONT_END_PLAYER_URL: https://PLACEHOLDER_IP:30443/players/v1/accounts
 FRONT_END_SUCCESS_CALLBACK: https://PLACEHOLDER_IP:30443/#/login/callback
