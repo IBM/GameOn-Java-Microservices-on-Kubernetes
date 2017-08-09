@@ -33,7 +33,7 @@ spec:
         name: kafka
         env:
         - name: ADVERTISED_HOST
-          value: kafka
+          value: localhost
         - name: ADVERTISED_PORT
           value: '9092'
         - name: AUTO_CREATE_TOPICS

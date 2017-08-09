@@ -64,9 +64,15 @@ FRONT_END_AUTH_URL: https://169.47.241.213:30443/auth
 PROXY_DOCKER_HOST: '169.47.241.213'
 ```
 
-An easy way to change these values is to do `sed -i s#169\.47\.241\.213#<Public-IP-of-your-cluster#g gameon-configmap.yaml` or `sed -i '' s#169\.47\.241\.213#<Public-IP-of-your-cluster>#g gameon-configmap.yaml`.
+An easy way to change these values is to do  
+`sed -i s#169\.47\.241\.213#<Public-IP-of-your-cluster#g gameon-configmap.yaml`  
+or `sed -i '' s#169\.47\.241\.213#<Public-IP-of-your-cluster>#g gameon-configmap.yaml`.
 
-[Other usage for the script can be found here.](/scripts#replace_ip_-os-sh)
+Then, apply the config map on your cluster:
+```bash
+$ kubectl create -f gameon-configmap.yaml
+configmap "gameon-env" created
+```
 
 # 2. Create a Volume for your Cluster
 You would need to create a volume for your cluster. You can use the provided yaml file. The required keystores will be stored in this volume. The volume will also be used by the [core services](#core-microservices).
