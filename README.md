@@ -40,7 +40,7 @@ If you want to deploy GameOn! directly to Bluemix, click on 'Deploy to Bluemix' 
 
 [![Create Toolchain](https://github.com/IBM/container-journey-template/blob/master/images/button.png)](https://console.ng.bluemix.net/devops/setup/deploy/?repository=https://github.com/IBM/GameOn-Java-Microservices-on-Kubernetes)
 
-Please follow the [Toolchain instructions](https://github.com/IBM/container-journey-template/blob/master/Toolchain_Instructions.md) to complete your toolchain and pipeline.
+Please follow the [Toolchain instructions](https://github.com/IBM/container-journey-template/blob/master/Toolchain_Instructions_new.md) to complete your toolchain and pipeline.
 
 ## Steps
 1. [Modify the Core services yaml files](#1-modify-the-core-services-yaml-files)
@@ -54,19 +54,19 @@ Please follow the [Toolchain instructions](https://github.com/IBM/container-jour
 #### [Troubleshooting](#troubleshooting-1)
 
 # 1. Modify the ConfigMap yaml file
-Change these values on the `gameon-configmap.yaml` file. Change `169.47.241.213` to the public IP of your cluster. You can get the IP from `bx cs workers <your-cluster-name>` for the Bluemix Container Service.
+Change these values on the `gameon-configmap.yaml` file. Change `PLACEHOLDER_IP` to the public IP of your cluster. You can get the IP from `bx cs workers <your-cluster-name>` for the Bluemix Container Service. Ex. `192.168.99.100`
 ```yaml
-FRONT_END_PLAYER_URL: https://169.47.241.213:30443/players/v1/accounts
-FRONT_END_SUCCESS_CALLBACK: https://169.47.241.213:30443/#/login/callback
-FRONT_END_FAIL_CALLBACK: https://169.47.241.213:30443/#/game
-FRONT_END_AUTH_URL: https://169.47.241.213:30443/auth
+FRONT_END_PLAYER_URL: https://PLACEHOLDER_IP:30443/players/v1/accounts
+FRONT_END_SUCCESS_CALLBACK: https://PLACEHOLDER_IP:30443/#/login/callback
+FRONT_END_FAIL_CALLBACK: https://PLACEHOLDER_IP:30443/#/game
+FRONT_END_AUTH_URL: https://PLACEHOLDER_IP:30443/auth
 ...
-PROXY_DOCKER_HOST: '169.47.241.213'
+PROXY_DOCKER_HOST: 'PLACEHOLDER_IP'
 ```
 
 An easy way to change these values is to do  
-`sed -i s#169\.47\.241\.213#<Public-IP-of-your-cluster#g gameon-configmap.yaml`  
-or `sed -i '' s#169\.47\.241\.213#<Public-IP-of-your-cluster>#g gameon-configmap.yaml`.
+`sed -i s#PLACEHOLDER_IP#<Public-IP-of-your-cluster#g gameon-configmap.yaml`  
+or `sed -i '' s#PLACEHOLDER_IP#<Public-IP-of-your-cluster>#g gameon-configmap.yaml`.
 
 Then, apply the config map on your cluster:
 ```bash
