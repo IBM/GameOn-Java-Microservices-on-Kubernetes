@@ -2,7 +2,7 @@
 
 echo "Creating GameOn App"
 
-IP_ADDR=$(bx cs workers $CLUSTER_NAME | grep normal | awk '{ print $2 }')
+IP_ADDR=$(bx cs workers $CLUSTER_NAME | grep normal | awk '{ print $2 }' | head -1)
 if [ -z $IP_ADDR ]; then
   echo "$CLUSTER_NAME not created or workers not ready"
   echo "Running clusters are: "
@@ -24,6 +24,7 @@ if [ $? -ne 0 ]; then
 fi
 eval "$exp"
 
+kubectl delete --ignore-not-found=true -f gameon-configmap.yaml
 kubectl delete pvc -l app=gameon
 kubectl delete --ignore-not-found=true -f core
 kubectl delete --ignore-not-found=true -f platform
@@ -38,6 +39,11 @@ do
 done
 kubectl delete --ignore-not-found=true -f local-volume.yaml
 
+
+sed -i s#PLACEHOLDER_IP#$IP_ADDR#g gameon-configmap.yaml
+
+echo -e "Creating config map"
+kubectl create -f gameon-configmap.yaml
 echo -e "Creating local volumes"
 kubectl create -f local-volume.yaml
 
@@ -128,7 +134,7 @@ code=$(curl -sw '%{http_code}' http://$IP_ADDR:31300/uptime -o /dev/null)
     sleep 5s
 done
 
-sed -i s#169.47.241.213#$IP_ADDR#g core/*
+
 
 kubectl create -f core
 

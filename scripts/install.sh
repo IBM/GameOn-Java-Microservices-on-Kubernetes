@@ -25,6 +25,7 @@ sudo mv ./kubectl /usr/local/bin/kubectl
 function cluster_setup() {
 bx cs workers $CLUSTER_NAME
 $(bx cs cluster-config $CLUSTER_NAME | grep export)
+kubectl delete --ignore-not-found=true -f gameon-configmap.yaml
 kubectl delete pvc -l app=gameon
 kubectl delete --ignore-not-found=true -f core
 kubectl delete --ignore-not-found=true -f platform
@@ -43,7 +44,8 @@ function initial_setup() {
 IP=$(kubectl get nodes | grep Ready | awk '{print $1}' | head -1)
 kubectl create -f local-volume.yaml
 sleep 5s
-sed -i s#169\.47\.241\.213#$IP#g setup.yaml
+sed -i s#PLACEHOLDER_IP#$IP#g gameon-configmap.yaml
+kubectl create -f gameon-configmap.yaml
 kubectl create -f setup.yaml
 echo "Waiting for container to setup"
 sleep 45
@@ -70,7 +72,6 @@ done
 }
 
 function create_platform_services() {
-IP=$(kubectl get nodes | grep Ready | awk '{print $1}')
 kubectl create -f platform
 
 echo "Waiting for pods to setup"
@@ -93,7 +94,7 @@ done
 
 echo "Pods for the platform services are now Running."
 echo "Waiting for the amalgam8 controlplane to finish setup..."
-
+IP=$(kubectl get po -l tier=controller -o jsonpath='{.items[0].status.hostIP}')
 TRIES=0
 while true
 do
@@ -110,7 +111,7 @@ code=$(curl -sw '%{http_code}' http://$IP:31200/health -o /dev/null)
     TRIES=$((TRIES+1))
     sleep 5s
 done
-
+IP=$(kubectl get po -l tier=registry -o jsonpath='{.items[0].status.hostIP}')
 TRIES=0
 while true
 do
@@ -130,9 +131,6 @@ done
 }
 
 function create_core_services() {
-IP=$(kubectl get nodes | grep Ready | awk '{print $1}')
-
-sed -i s#169.47.241.213#$IP#g core/*
 
 kubectl create -f core
 

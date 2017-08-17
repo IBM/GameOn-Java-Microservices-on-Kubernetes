@@ -40,7 +40,7 @@ If you want to deploy GameOn! directly to Bluemix, click on 'Deploy to Bluemix' 
 
 [![Create Toolchain](https://github.com/IBM/container-journey-template/blob/master/images/button.png)](https://console.ng.bluemix.net/devops/setup/deploy/?repository=https://github.com/IBM/GameOn-Java-Microservices-on-Kubernetes)
 
-Please follow the [Toolchain instructions](https://github.com/IBM/container-journey-template/blob/master/Toolchain_Instructions.md) to complete your toolchain and pipeline.
+Please follow the [Toolchain instructions](https://github.com/IBM/container-journey-template/blob/master/Toolchain_Instructions_new.md) to complete your toolchain and pipeline.
 
 ## Steps
 1. [Modify the Core services yaml files](#1-modify-the-core-services-yaml-files)
@@ -53,14 +53,28 @@ Please follow the [Toolchain instructions](https://github.com/IBM/container-jour
 
 #### [Troubleshooting](#troubleshooting-1)
 
-# 1. Modify the Core services yaml files
-You can use the script provided that replaces the default values in the yaml files to the IP of your current cluster.
-* `./scripts/replace_ip_linux.sh` for linux
-* `./scripts/replace_ip_OSX.sh` for macOS
+# 1. Modify the ConfigMap yaml file
+Change these values on the `gameon-configmap.yaml` file. Change `PLACEHOLDER_IP` to the public IP of your cluster. You can get the IP from `bx cs workers <your-cluster-name>` for the Bluemix Container Service. Ex. `192.168.99.100`
+> For minikube, you can get the IP using `minikube ip`
 
-> The script replaces every instance of `169.47.241.213` in the files of your [core services](#core-microservices) yaml files  and `setup.yaml` to the IP of your cluster *(found by executing `kubectl get nodes`)*.
+```yaml
+FRONT_END_PLAYER_URL: https://PLACEHOLDER_IP:30443/players/v1/accounts
+FRONT_END_SUCCESS_CALLBACK: https://PLACEHOLDER_IP:30443/#/login/callback
+FRONT_END_FAIL_CALLBACK: https://PLACEHOLDER_IP:30443/#/game
+FRONT_END_AUTH_URL: https://PLACEHOLDER_IP:30443/auth
+...
+PROXY_DOCKER_HOST: 'PLACEHOLDER_IP'
+```
 
-[Other usage for the script can be found here.](/scripts#replace_ip_-os-sh)
+An easy way to change these values is to do  
+`sed -i s#PLACEHOLDER_IP#<Public-IP-of-your-cluster#g gameon-configmap.yaml`  
+or `sed -i '' s#PLACEHOLDER_IP#<Public-IP-of-your-cluster>#g gameon-configmap.yaml`.
+
+Then, apply the config map on your cluster:
+```bash
+$ kubectl create -f gameon-configmap.yaml
+configmap "gameon-env" created
+```
 
 # 2. Create a Volume for your Cluster
 You would need to create a volume for your cluster. You can use the provided yaml file. The required keystores will be stored in this volume. The volume will also be used by the [core services](#core-microservices).
@@ -253,6 +267,7 @@ To register the deployed rooms in the cluster, you will need to use the UI of yo
   * `kubectl delete svc,deploy,pvc -l app=gameon`
   * `kubectl delete pod setup`
   * `kubectl delete pv local-volume-1`
+  * `kubectl delete -f gameon-configmap.yaml`
 
 ## References
 

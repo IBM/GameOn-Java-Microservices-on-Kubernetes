@@ -12,7 +12,10 @@ spec:
     image: anthonyamanse/keystore
     env:
       - name: IP
-        value: '169.47.241.213'
+        valueFrom:
+          configMapKeyRef:
+            name: gameon-env
+            key: PROXY_DOCKER_HOST
     volumeMounts:
     - name: keystore
       mountPath: /tmp/keystore/
