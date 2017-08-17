@@ -41,7 +41,7 @@ kubectl delete --ignore-not-found=true -f local-volume.yaml
 }
 
 function initial_setup() {
-IP=$(kubectl get nodes | grep Ready | awk '{print $1}' | head -1)
+IP=$(bx cs workers $CLUSTER_NAME | grep normal | awk '{print $2}' | head -1)
 kubectl create -f local-volume.yaml
 sleep 5s
 sed -i s#PLACEHOLDER_IP#$IP#g gameon-configmap.yaml
@@ -94,7 +94,7 @@ done
 
 echo "Pods for the platform services are now Running."
 echo "Waiting for the amalgam8 controlplane to finish setup..."
-IP=$(kubectl get po -l tier=controller -o jsonpath='{.items[0].status.hostIP}')
+IP=$(bx cs workers $CLUSTER_NAME | grep normal | awk '{print $2}' | head -1)
 TRIES=0
 while true
 do
@@ -111,7 +111,7 @@ code=$(curl -sw '%{http_code}' http://$IP:31200/health -o /dev/null)
     TRIES=$((TRIES+1))
     sleep 5s
 done
-IP=$(kubectl get po -l tier=registry -o jsonpath='{.items[0].status.hostIP}')
+IP=$(bx cs workers $CLUSTER_NAME | grep normal | awk '{print $2}' | head -1)
 TRIES=0
 while true
 do
