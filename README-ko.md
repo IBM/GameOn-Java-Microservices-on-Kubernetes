@@ -42,16 +42,16 @@ GameOn!을 블루믹스에 직접 구축하려면, 아래의 ‘Deploy to Bluemi
 
 [![Create Toolchain](https://github.com/IBM/container-journey-template/blob/master/images/button.png)](https://console.ng.bluemix.net/devops/setup/deploy/?repository=https://github.com/IBM/GameOn-Java-Microservices-on-Kubernetes)
 
-[툴체인 설명](https://github.com/IBM/container-journey-template/blob/master/Toolchain_Instructions_new.md)에 따라 툴체인 및 파이프라인을 완료하십시오.
+[툴체인 학습](https://github.com/IBM/container-journey-template/blob/master/Toolchain_Instructions_new-ko.md)에 따라 툴체인 및 파이프라인을 완료하십시오.
 
 ## 단계
 1. [코어 서비스 yaml 파일 수정하기](#1-코어-서비스-yaml-파일-수정하기)
 2. [클러스터 볼륨 생성하기](#2-클러스터-볼륨-생성하기)
 3. [플랫폼 서비스 생성하기](#3-플랫폼-서비스-생성하기)
 4. [코어 서비스 생성하기](#4-코어-서비스-생성하기)
-5. [GameOn 앱 살펴보기](#5-GameOn-앱-살펴보기)
+5. [GameOn 앱 살펴보기](#5-gameon-앱-살펴보기)
   - 5.1 [소셜 로그인 추가하기](#51-소셜-로그인-추가하기)
-  - 5.2 [룸(Room) 추가하기](#52-룸(room)-추가하기)
+  - 5.2 [룸(Room) 추가하기](#52-룸room-추가하기)
 
 #### [문제 해결](#문제-해결-1)
 
@@ -79,7 +79,7 @@ configmap "gameon-env" created
 ```
 
 # 2. 클러스터 볼륨 생성하기
-사용자 클러스터에 볼륨을 생성해야 합니다. 이때, 제공된 yaml 파일을 사용할 수 있습니다. 클러스터 볼륨은 필요한 keystore를 저장하며 [코어 서비스](#코어-서비스)에서 사용됩니다.
+사용자 클러스터에 볼륨을 생성해야 합니다. 이때, 제공된 yaml 파일을 사용할 수 있습니다. 클러스터 볼륨은 필요한 keystore를 저장하며 [코어 서비스](#코어-마이크로서비스)에서 사용됩니다.
 ```bash
 $ kubectl create -f local-volume.yaml
 persistent volumes "local-volume-1" created
@@ -133,7 +133,7 @@ $ curl -sw "%{http_code}" "<Public IP of your kubernetes>:31300/uptime" -o /dev/
 > 참고: Pod 설치 완료까지 대략 1-2 분이 소요될 수 있습니다.
 
 # 4. 코어 서비스 생성하기
-마지막 단계로, 앱의 **[코어 서비스](#코어-마이크로서비스)**와 배치를 생성할 수 있습니다.
+마지막 단계로, 앱의 [**코어 서비스**](#코어-마이크로서비스)와 배치를 생성할 수 있습니다.
 *(소셜 로그인을 원할 경우, [코어 서비스](#코어-마이크로서비스) 구축에 앞서 [여기](#a-adding-social-logins)의 절차를 이행하십시오)*
 
 
@@ -181,7 +181,7 @@ map, auth, mediator, player, room 서버들을 검색해야 합니다. 서버 �
 # 5.1 소셜 로그인 추가하기
 소셜 로그인을 추가하여 친구들과 함께 room들을 탐험할 수 있습니다. 소셜 로그인을 추가하려면 사용하고자 하는 소셜 앱에 개발자 계정이 있어야 합니다.
 
-> Y편집된 사용자 yaml 파일로  **[코어 서비스](#코어-마이크로서비스)**를 재구축해야 합니다. 그 다음 단계에서 API 키를 추가할 장소를 확인할 수 있습니다.
+> 편집된 사용자 yaml 파일로 [**코어 서비스**](#코어-마이크로서비스)를 재구축해야 합니다. 그 다음 단계에서 API 키를 추가할 장소를 확인할 수 있습니다.
 
 
 ## Github
@@ -195,7 +195,7 @@ Authorization 콜백 URL에서 IP 주소와 포트 30443을 입력하고, 앱의
 
 위 내용은 클러스터가 새로 생성된 경우 나중에라도 GitHub에서 편집할 수 있습니다.
 앱의 **Client ID**와 **Client Secret**을 기록해 놓으십시오.
-**[코어 서비스](#코어-마이크로서비스)**의 yaml 파일에서 환경 변수에 추가해야 합니다
+[**코어 서비스**](#코어-마이크로서비스)의 yaml 파일에서 환경 변수에 추가해야 합니다
 ```yaml
 ...
 - name: GITHUB_APP_ID
@@ -217,7 +217,7 @@ Authorization 콜백 URL에서 IP 주소와 포트 30443을 입력하고, 앱의
 Authorization 콜백 URL에는 IP 주소와 포트 30443을 입력하고, 앱의 auth 서비스로 포인팅해야 합니다.
 > https://169.xxx.xxx.xxx:30443/auth/TwitterAuth
 
-등록을 마친 트위터 애플리케이션의 Keys and Access Tokens 섹션으로 이동하여 앱의 **Consumer Key**와 **Consumer Secret**을 기록해 놓으십시오. **[코어 서비스](#코어-마이크로서비스)**의 yaml 파일에서 환경 변수에 추가해야 합니다.
+등록을 마친 트위터 애플리케이션의 Keys and Access Tokens 섹션으로 이동하여 앱의 **Consumer Key**와 **Consumer Secret**을 기록해 놓으십시오. [**코어 서비스**](#코어-마이크로서비스)의 yaml 파일에서 환경 변수에 추가해야 합니다.
 ```yaml
 ...
 - name: TWITTER_CONSUMER_KEY
@@ -232,7 +232,7 @@ Authorization 콜백 URL에는 IP 주소와 포트 30443을 입력하고, 앱의
 
 GameOn 팀의 [**본 지침**](https://gameontext.gitbooks.io/gameon-gitbook/content/walkthroughs/createRoom.html)을 따라 나만의 룸(room)을 빌드할 수 있습니다. GameOn 팀은 Java, Swift, Go 등으로 작성된 샘플 room들을 갖고 있습니다.
 
-본 과정에서는 **[Java로 작성된 샘플 room](https://github.com/gameontext/sample-room-java)**을 빌드하게 될 것입니다. 샘플 room은 GameOn 앱과 동일한 클러스터에 빌드됩니다.
+본 과정에서는 [**Java로 작성된 샘플 room**](https://github.com/gameontext/sample-room-java)을 빌드하게 될 것입니다. 샘플 room은 GameOn 앱과 동일한 클러스터에 빌드됩니다.
 
 다음 명령을 실행하면 room이 생성됩니다.
 ```bash
@@ -247,7 +247,7 @@ $ kubectl create -f sample-room
 > 참고: 샘플에서 Java Room은 포트 9080을 사용하며, Swift Room은 포트 8080을 사용합니다.
 
 ![addroom](images/addroom2.png)
-* Map에 room을 성공적으로 등록했습니다. UI에서 `/listmyrooms`와 같은 명령을 입력하거나 id와 `/teleport <id-of-the-room>`를 이용하여 room으로 직접 이동할 수 있습니다. [GameOn 앱에 대해 알아 보십시오](#5-GameOn-앱-살펴보기).
+* Map에 room을 성공적으로 등록했습니다. UI에서 `/listmyrooms`와 같은 명령을 입력하거나 id와 `/teleport <id-of-the-room>`를 이용하여 room으로 직접 이동할 수 있습니다. [GameOn 앱에 대해 알아 보십시오](#5-gameon-앱-살펴보기).
 
 * [**여기**](https://gameontext.gitbooks.io/gameon-gitbook/content/walkthroughs/registerRoom.html)에서 세부적인 room 등록 정보를 확인할 수 있습니다.
 * [GameOn 가이드](https://gameontext.gitbooks.io/gameon-gitbook/content/walkthroughs/createRoom.html)에 따라 나만의 room을 빌드할 수 있습니다.
