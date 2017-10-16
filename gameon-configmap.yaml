@@ -1,3 +1,4 @@
+---
 apiVersion: v1
 kind: ConfigMap
 metadata:
@@ -33,5 +34,4 @@ data:
   COUCHDB_PASSWORD: myCouchDBSecret
   A8_REGISTRY_URL: http://registry:8080
   A8_CONTROLLER_URL: http://controller:8080
-  A8_CONTROLLER_POLL: 5s
   A8_CONTROLLER_POLL: 5s

@@ -1,3 +1,4 @@
+---
 apiVersion: v1
 kind: PersistentVolume
 metadata:
@@ -17,6 +18,8 @@ apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   name: keystore-claim
+  annotations: # comment line if you want to use a StorageClass or specify which StorageClass
+    volume.beta.kubernetes.io/storage-class: "" # comment line if you want to use a StorageClass or specify which StorageClass
   labels:
     app: gameon
 spec:

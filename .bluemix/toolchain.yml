@@ -1,20 +1,21 @@
 ---
 name: "Deploy GameOn! Java Microservices sample to Bluemix"
-description: "Toolchain to deploy GameOn! Java Microservices on Kubernetes Cluster to Bluemix"
+description: "Toolchain to deploy GameOn! on Kubernetes Cluster to Bluemix"
 version: 0.1
 image: data:image/svg+xml;base64,$file(toolchain.svg,base64)
 icon: data:image/svg+xml;base64,$file(icon.svg,base64)
 required:
- - deploy
- - sample-repo
+  - deploy
+  - sample-repo
 
 # Github repos
 sample-repo:
   service_id: githubpublic
   parameters:
     repo_name: "{{name}}"
-    repo_url: https://github.com/IBM/GameOn-Java-Microservices-on-Kubernetes.git
-    type: fork
+    repo_url: >-
+      https://github.com/IBM/GameOn-Java-Microservices-on-Kubernetes.git
+    type: clone
     has_issues: false
 
 # Pipelines
@@ -24,18 +25,18 @@ sample-build:
     name: "{{name}}"
     ui-pipeline: true
     configuration:
-     content: $file(pipeline.yml)
-     env:
-      SAMPLE_REPO: "sample-repo"
-      CF_APP_NAME: "{{deploy.parameters.prod-app-name}}"
-      PROD_SPACE_NAME: "{{deploy.parameters.prod-space}}"
-      PROD_ORG_NAME: "{{deploy.parameters.prod-organization}}"
-      PROD_REGION_ID: "{{deploy.parameters.prod-region}}"
-     execute: true
+      content: $file(pipeline.yml)
+      env:
+        SAMPLE_REPO: "sample-repo"
+        CF_APP_NAME: "{{deploy.parameters.prod-app-name}}"
+        PROD_SPACE_NAME: "{{deploy.parameters.prod-space}}"
+        PROD_ORG_NAME: "{{deploy.parameters.prod-organization}}"
+        PROD_REGION_ID: "{{deploy.parameters.prod-region}}"
+      execute: true
     services: ["sample-repo"]
   hidden: [form, description]
 
-#Deployment
+# Deployment
 deploy:
   schema:
     $ref: deploy.json
