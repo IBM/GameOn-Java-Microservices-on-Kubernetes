@@ -44,11 +44,17 @@
 
 ## 步骤
 1.[修改核心服务 yaml 文件](#1-modify-the-core-services-yaml-files)
+
 2.[为您的集群创建一个卷](#2-create-a-volume-for-your-cluster)
+
 3.[创建平台服务](#3-create-the-platform-services)
+
 4.[创建核心服务](#4-create-the-core-services)
+
 5.[探索您的 GameOn 应用程序](#5-explore-your-gameon-app)
+
   - 5.1 [添加社交登录](#51-add-social-logins)
+  
   - 5.2 [添加房间](#52-add-rooms)
 
 #### [故障排除](#troubleshooting-1)
