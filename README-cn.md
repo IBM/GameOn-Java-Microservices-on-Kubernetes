@@ -1,4 +1,5 @@
-﻿[![构建状态](https://travis-ci.org/IBM/GameOn-Java-Microservices-on-Kubernetes.svg?branch=master)](https://travis-ci.org/IBM/GameOn-Java-Microservices-on-Kubernetes)
+﻿*阅读本文的其他语言版本：[English](README.md)。*
+ [![构建状态](https://travis-ci.org/IBM/GameOn-Java-Microservices-on-Kubernetes.svg?branch=master)](https://travis-ci.org/IBM/GameOn-Java-Microservices-on-Kubernetes)
 
 # GameOn! Kubernetes 上的 Java 微服务与多语言生态系统
 
