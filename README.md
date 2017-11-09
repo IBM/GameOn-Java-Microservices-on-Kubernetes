@@ -2,7 +2,7 @@
 
 # GameOn! Java Microservices on Kubernetes with polyglot ecosystem
 
-*Read this in other languages: [한국어](README-ko.md).*
+*Read this in other languages: [한국어](README-ko.md)、[中国](README-cn.md).*
 
 This code demonstrates deployment of a Microservices based application [Game On!](https://book.gameontext.org) on to Kubernetes cluster which exists together with a polyglot ecosystem. Game On! is a throwback text-based adventure built to help you explore microservice architectures and related concepts. GameOn! deployment has two sets of microservice, core and platform. The core microservices are written in Java, coexisting with other polyglot microservices. In addition, there are platform services, which provide service discovery, registration and routing for different microservices. All run in in Docker containers managed by Kubernetes Cluster.
 
