@@ -1,6 +1,5 @@
-﻿*阅读本文的其他语言版本：[English](README.md)。*
- [![构建状态](https://travis-ci.org/IBM/GameOn-Java-Microservices-on-Kubernetes.svg?branch=master)](https://travis-ci.org/IBM/GameOn-Java-Microservices-on-Kubernetes)
-
+﻿ [![构建状态](https://travis-ci.org/IBM/GameOn-Java-Microservices-on-Kubernetes.svg?branch=master)](https://travis-ci.org/IBM/GameOn-Java-Microservices-on-Kubernetes)
+*阅读本文的其他语言版本：[English](README.md)。*
 # GameOn! Kubernetes 上的 Java 微服务与多语言生态系统
 
 此代码将演示如何将一个基于微服务的应用程序 [Game On!](https://book.gameontext.org) 部署在 Kubernetes 集群上，让它与一个多语言生态系统共存。Game On! 是一个基于文本的复古冒险游戏，旨在帮助您探索微服务架构和相关概念。GameOn! 部署有两组微服务：核心和平台。核心微服务是用 Java 编写的，与其他多语言微服务共存。此外，还有一些平台服务，它们为不同微服务提供服务发现、注册和路由功能。所有微服务都在 Kubernetes 集群管理的 Docker 容器中运行。
