@@ -1,3 +1,4 @@
+---
 apiVersion: v1
 kind: Pod
 metadata:
@@ -8,18 +9,18 @@ metadata:
 spec:
   restartPolicy: Never
   containers:
-  - name: setup
-    image: anthonyamanse/keystore
-    env:
-      - name: IP
-        valueFrom:
-          configMapKeyRef:
-            name: gameon-env
-            key: PROXY_DOCKER_HOST
-    volumeMounts:
-    - name: keystore
-      mountPath: /tmp/keystore/
+    - name: setup
+      image: anthonyamanse/keystore
+      env:
+        - name: IP
+          valueFrom:
+            configMapKeyRef:
+              name: gameon-env
+              key: PROXY_DOCKER_HOST
+      volumeMounts:
+        - name: keystore
+          mountPath: /tmp/keystore/
   volumes:
-  - name: keystore
-    persistentVolumeClaim:
-      claimName: keystore-claim
+    - name: keystore
+      persistentVolumeClaim:
+        claimName: keystore-claim

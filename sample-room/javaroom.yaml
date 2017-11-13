@@ -1,3 +1,4 @@
+---
 apiVersion: v1
 kind: Service
 metadata:
@@ -29,14 +30,15 @@ spec:
         tier: javaroom
     spec:
       containers:
-      - image: anthonyamanse/sample-room-java:2.0
-        name: javaroom
-        ports:
-        - containerPort: 9080
-        volumeMounts:
-        - name: keystore
-          mountPath: /opt/ibm/wlp/usr/servers/defaultServer/resources/security
+        - image: anthonyamanse/sample-room-java:2.0
+          name: javaroom
+          ports:
+            - containerPort: 9080
+          volumeMounts:
+            - name: keystore
+              mountPath: >-
+                /opt/ibm/wlp/usr/servers/defaultServer/resources/security
       volumes:
-      - name: keystore
-        persistentVolumeClaim:
-          claimName: keystore-claim
+        - name: keystore
+          persistentVolumeClaim:
+            claimName: keystore-claim

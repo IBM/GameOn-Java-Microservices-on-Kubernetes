@@ -1,3 +1,4 @@
+---
 apiVersion: v1
 kind: Service
 metadata:
@@ -29,15 +30,15 @@ spec:
         tier: kafka
     spec:
       containers:
-      - image: spotify/kafka
-        name: kafka
-        env:
-        - name: ADVERTISED_HOST
-          value: localhost
-        - name: ADVERTISED_PORT
-          value: '9092'
-        - name: AUTO_CREATE_TOPICS
-          value: "true"
-        ports:
-        - containerPort: 9092
+        - image: spotify/kafka
           name: kafka
+          env:
+            - name: ADVERTISED_HOST
+              value: localhost
+            - name: ADVERTISED_PORT
+              value: '9092'
+            - name: AUTO_CREATE_TOPICS
+              value: "true"
+          ports:
+            - containerPort: 9092
+              name: kafka
