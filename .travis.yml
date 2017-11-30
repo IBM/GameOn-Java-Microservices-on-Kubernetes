@@ -1,8 +1,10 @@
+---
 language: bash
 script: true
 sudo: required
-before_install:
-- bash scripts/install.sh
+install:
+  - "./scripts/install.sh"
+  - "./scripts/bx_auth.sh"
 group: stable
 dist: precise
 os: linux

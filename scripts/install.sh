@@ -12,10 +12,7 @@ tar -xvf Bluemix_CLI.tar.gz
 sudo ./Bluemix_CLI/install_bluemix_cli
 }
 
-function bluemix_auth() {
-echo "Authenticating with Bluemix"
-echo "1" | bx login -a https://api.ng.bluemix.net --apikey $BLUEMIX_AUTH
-curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl
+function install_kubectl() {
 bx plugin install container-service -r Bluemix
 echo "Installing kubectl"
 chmod +x ./kubectl
@@ -186,7 +183,7 @@ done
 
 
 install_bluemix_cli
-bluemix_auth
+install_kubectl
 cluster_setup
 initial_setup
 create_platform_services
