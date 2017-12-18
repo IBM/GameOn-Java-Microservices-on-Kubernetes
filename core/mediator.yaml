@@ -37,7 +37,8 @@ spec:
         tier: mediator
     spec:
       containers:
-      - image: gameontext/gameon-mediator
+      - image: anthonyamanse/gameon-mediator:latest
+        imagePullPolicy: Always
         name: mediator
         env:
           - name: service_map

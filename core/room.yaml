@@ -37,7 +37,8 @@ spec:
         tier: room
     spec:
       containers:
-      - image: gameontext/gameon-room
+      - image: anthonyamanse/gameon-room:latest
+        imagePullPolicy: Always
         name: room
         env:
           - name: service_map

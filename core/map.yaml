@@ -37,7 +37,8 @@ spec:
         tier: map
     spec:
       containers:
-      - image: gameontext/gameon-map
+      - image: anthonyamanse/gameon-map:latest
+        imagePullPolicy: Always
         name: map
         env:
           - name: service_map
