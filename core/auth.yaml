@@ -37,7 +37,8 @@ spec:
         tier: auth
     spec:
       containers:
-      - image: gameontext/gameon-auth
+      - image: anthonyamanse/gameon-auth:latest
+        imagePullPolicy: Always
         name: auth
         env:
           - name: service_map

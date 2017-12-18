@@ -32,7 +32,8 @@ spec:
         tier: webapp
     spec:
       containers:
-      - image: gameontext/gameon-webapp
+      - image: anthonyamanse/gameon-webapp:latest
+        imagePullPolicy: Always
         name: webapp
         env:
           - name: service_map
