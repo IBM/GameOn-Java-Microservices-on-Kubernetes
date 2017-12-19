@@ -46,24 +46,23 @@ if [ "$ETCDCTL_ENDPOINT" != "" ]; then
   export A8_CONTROLLER_POLL=$(etcdctl get /amalgam8/controllerPoll)
   JWT=$(etcdctl get /amalgam8/jwt)
 
-  sudo service rsyslog start 
+  sudo service rsyslog start
 
   echo Starting haproxy...
-  if [ -z "$A8_REGISTRY_URL" ]; then 
+  if [ -z "$A8_REGISTRY_URL" ]; then
     #no a8, just run haproxy.
     haproxy -f $PROXY_CONFIG
   else
     #a8, configure security, and run via sidecar.
-    if [ ! -z "$JWT" ]; then     
+    if [ ! -z "$JWT" ]; then
       export A8_REGISTRY_TOKEN=$JWT
       export A8_CONTROLLER_TOKEN=$JWT
-    fi  
+    fi
     exec a8sidecar --proxy haproxy -f $PROXY_CONFIG
-  fi  
+  fi
   echo HAProxy shut down
 else
   echo HAProxy will log to STDOUT--this is dev environment.
   sed -i s/PLACEHOLDER_PASSWORD/$ADMIN_PASSWORD/g /etc/haproxy/haproxy-dev.cfg
-  sed -i s/PLACEHOLDER_DOCKERHOST/$PROXY_DOCKER_HOST/g /etc/haproxy/haproxy-dev.cfg
   exec a8sidecar --proxy haproxy -f /etc/haproxy/haproxy-dev.cfg
 fi

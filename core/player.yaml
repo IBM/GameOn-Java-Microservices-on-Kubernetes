@@ -42,7 +42,8 @@ spec:
         tier: player
     spec:
       containers:
-      - image: gameontext/gameon-player
+      - image: anthonyamanse/gameon-player:latest
+        imagePullPolicy: Always
         name: player
         env:
           - name: service_map
