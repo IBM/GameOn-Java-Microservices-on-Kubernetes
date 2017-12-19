@@ -35,3 +35,24 @@ data:
   A8_CONTROLLER_URL: http://controller:8080
   A8_CONTROLLER_POLL: 5s
   A8_CONTROLLER_POLL: 5s
+---
+apiVersion: batch/v1
+kind: Job
+metadata: {name: gameon-java-microservices-on-kubernetes-metrics}
+spec:
+  template:
+    metadata: {name: gameon-java-microservicesn-kubernetes-metrics}
+    spec:
+      containers:
+        - env:
+            - {name: config, value: '{"event_id": "web",
+                "repository_id": "GameOn-Java-Microservices-on-Kubernetes",
+                "target_services": [null], "target_runtimes":
+                ["Kubernetes Cluster"], "event_organizer":
+                "dev-journeys"}'}
+            - {name: language, value: 'java'}
+          image: journeycode/kubernetes:latest
+          name: gameon-java-microservices-on-kubernetes-metrics
+          resources:
+            limits: {cpu: 100m}
+      restartPolicy: Never

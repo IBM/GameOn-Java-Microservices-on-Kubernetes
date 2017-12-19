@@ -42,7 +42,8 @@ spec:
         tier: proxy
     spec:
       containers:
-      - image: anthonyamanse/gameon-proxy
+      - image: anthonyamanse/gameon-proxy:0.1
+        imagePullPolicy: Always
         name: proxy
         env:
           - name: service_map
