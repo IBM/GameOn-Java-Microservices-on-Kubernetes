@@ -10,7 +10,7 @@ This code demonstrates deployment of a Microservices based application [Game On!
 
 ### Core MicroServices:
 
-There are five core Java microservices, using [JAX-RS](https://en.wikipedia.org/wiki/Java_API_for_RESTful_Web_Services), [CDI](https://dzone.com/articles/cdi-di-p1) etc. part of the [MicroProfile](http://microprofile.io) spec.
+There are five core Java microservices, using [JAX-RS](https://en.wikipedia.org/wiki/Java_API_for_RESTful_Web_Services), [CDI](https://dzone.com/articles/cdi-di-p1) etc. part of the [MicroProfile](https://microprofile.io/) spec.
 
 - [Player](https://github.com/gameontext/gameon-player): Players are represented by the player Java microservice which provides a public API for CRUD operations, and for managing API tokens.
 - [Auth](https://github.com/gameontext/gameon-auth): Java microservice to allow players to connect and identify themselves via a selected "social login"
@@ -25,7 +25,7 @@ In addition, Proxy and WebApp complete the core microservices
 
 ### Platform Services:
 
-- [Service Discovery, Registry and Routing](https://www.amalgam8.io/): Service Registry and routing components, via which  Service Discovery and Service Proxying are implemented. In addition, there are sidecars associated with each microservice, which automatically registers the microservice with the registry.
+- [Service Discovery, Registry and Routing](https://amalgam8.io/): Service Registry and routing components, via which  Service Discovery and Service Proxying are implemented. In addition, there are sidecars associated with each microservice, which automatically registers the microservice with the registry.
 - [Redis](): Store the addresses used by Sidecars
 - [Kafka](https://kafka.apache.org): Publish/Subscribe solution used by services and the platform.
 
@@ -33,7 +33,7 @@ In addition, Proxy and WebApp complete the core microservices
 
 To deploy the game locally, follow the instructions via docker-compose in GameOn repository [here](https://github.com/gameontext/gameon#local-room-development).
 
-To follow the steps here, create a Kubernetes cluster with either [Minikube](https://kubernetes.io/docs/getting-started-guides/minikube) for local testing, with [IBM Cloud Private](https://github.com/IBM/deploy-ibm-cloud-private/blob/master/README.md), or with [IBM Bluemix Container Service](https://github.com/IBM/container-journey-template/blob/master/README.md) to deploy in cloud. The code here is regularly tested against [Kubernetes Cluster from Bluemix Container Service](https://console.ng.bluemix.net/docs/containers/cs_ov.html#cs_ov) using Travis.
+To follow the steps here, create a Kubernetes cluster with either [Minikube](https://kubernetes.io/docs/setup/minikube/) for local testing, with [IBM Cloud Private](https://github.com/IBM/deploy-ibm-cloud-private/blob/master/README.md), or with [IBM Bluemix Container Service](https://github.com/IBM/container-journey-template/blob/master/README.md) to deploy in cloud. The code here is regularly tested against [Kubernetes Cluster from Bluemix Container Service](https://cloud.ibm.com/docs/containers/cs_ov.html#cs_ov) using Travis.
 
 
 ## Steps
@@ -60,8 +60,8 @@ FRONT_END_AUTH_URL: https://PLACEHOLDER_IP:30443/auth
 PROXY_DOCKER_HOST: 'PLACEHOLDER_IP'
 ```
 
-An easy way to change these values is to do  
-`sed -i s#PLACEHOLDER_IP#<Public-IP-of-your-cluster#g gameon-configmap.yaml`  
+An easy way to change these values is to do
+`sed -i s#PLACEHOLDER_IP#<Public-IP-of-your-cluster#g gameon-configmap.yaml`
 or `sed -i '' s#PLACEHOLDER_IP#<Public-IP-of-your-cluster>#g gameon-configmap.yaml`.
 
 Then, apply the config map on your cluster:
@@ -201,7 +201,7 @@ You will need to add this in the environment variables on the yaml files of your
 
 ## Twitter
 
-You can register your application with your Twitter account in this link: [Create new app](https://apps.twitter.com/app/new)
+You can register your application with your Twitter account in this link: [Create new app](https://developer.twitter.com/app/new)
 ![Twitter](images/twitter.png)
 
 For the name field, you can put the name you want for your app.
@@ -269,6 +269,6 @@ To register the deployed rooms in the cluster, you will need to use the UI of yo
 
 ## License
 
-This code pattern is licensed under the Apache Software License, Version 2.  Separate third party code objects invoked within this code pattern are licensed by their respective providers pursuant to their own separate licenses. Contributions are subject to the [Developer Certificate of Origin, Version 1.1 (DCO)](https://developercertificate.org/) and the [Apache Software License, Version 2](http://www.apache.org/licenses/LICENSE-2.0.txt).
+This code pattern is licensed under the Apache Software License, Version 2.  Separate third party code objects invoked within this code pattern are licensed by their respective providers pursuant to their own separate licenses. Contributions are subject to the [Developer Certificate of Origin, Version 1.1 (DCO)](https://developercertificate.org/) and the [Apache Software License, Version 2](https://www.apache.org/licenses/LICENSE-2.0.txt).
 
-[Apache Software License (ASL) FAQ](http://www.apache.org/foundation/license-faq.html#WhatDoesItMEAN)
+[Apache Software License (ASL) FAQ](https://www.apache.org/foundation/license-faq.html#WhatDoesItMEAN)
